@@ -1,0 +1,310 @@
+{
+  "_comment": "The one place for every URL, the arXiv ID and the authors. Edit, then run: python3 scripts/build.py",
+
+  "site": {
+    "name": "Real2SimHub",
+    "short": "Hub",
+    "url": "https://real2simhub.github.io/",
+    "description": "Real2SimHub: a community to build the infrastructure of real-to-simulation together. Real2SimLab and Awesome-Real2Sim by PKU-VaLuE-Lab.",
+    "org_name": "PKU-VaLuE-Lab",
+    "_github": "org_name is the lab that makes the projects (footer, cards); github is where their repositories live (header button, footer link).",
+    "github_name": "Real2SimHub",
+    "github": "https://github.com/Real2SimHub",
+    "year": "2026"
+  },
+
+  "links": {
+    "real2simlab_code": "https://github.com/Real2SimHub/Real2SimLab",
+    "real2simlab_evaluate": "https://github.com/Real2SimHub/Real2SimLab#-evaluate-your-agent",
+    "real2simlab_extend": "https://github.com/Real2SimHub/Real2SimLab#-extend-it",
+    "real2simlab_docs": "https://real2simhub.github.io/Real2SimLab/",
+    "awesome": "https://github.com/Real2SimHub/Awesome-Real2Sim",
+    "awesome_list": "https://github.com/Real2SimHub/Awesome-Real2Sim#-contents",
+    "awesome_contributing": "https://github.com/Real2SimHub/Awesome-Real2Sim/blob/main/CONTRIBUTING.md",
+    "credits": "https://github.com/Real2SimHub/Real2SimHub.github.io#credits"
+  },
+
+  "paper": {
+    "title": "Real2SimLab: A Unified Platform for Real-to-Simulation Transfer",
+    "arxiv_id": "2611.34849",
+    "bibtex_key": "real2simlab2026",
+    "year": "2026",
+    "_homepage": "An author's optional homepage links the name on the project pages (new tab). Add one only from the author or a page they maintain; never guess.",
+    "authors": [
+      {"name": "Yongchang Zhang", "affiliations": [1], "marks": ["equal", "lead"], "homepage": "https://uuuuzyc.github.io/"},
+      {"name": "Jie Huang", "affiliations": [1], "marks": ["equal", "lead"], "homepage": "https://jie-1203.github.io/"},
+      {"name": "Yunhe Ni", "affiliations": [1], "marks": ["equal"], "homepage": "https://scholar.google.com/citations?user=_r2icNAAAAAJ&hl=en"},
+      {"name": "Ningyu Zhou", "affiliations": [3], "marks": [], "homepage": "https://zhouningyu327.github.io/"},
+      {"name": "Guangyu Zhao", "affiliations": [1], "marks": [], "homepage": "https://guangyu-zhao.github.io/"},
+      {"name": "Ruixun Liu", "affiliations": [1], "marks": [], "homepage": "https://liuruixun.github.io/"},
+      {"name": "Rui Huang", "affiliations": [4], "marks": [], "homepage": "https://ruihuangai.github.io/"},
+      {"name": "Yidi Wu", "affiliations": [3], "marks": [], "homepage": "https://scholar.google.com/citations?user=Ruzmd-cAAAAJ&hl=en"},
+      {"name": "TianZe Zhang", "affiliations": [1], "marks": [], "homepage": "https://scholar.google.com/citations?user=TSzGqfAAAAAJ&hl=en"},
+      {"name": "Zixiang Jiang", "affiliations": [2], "marks": []},
+      {"name": "Xiang Li", "affiliations": [2], "marks": []},
+      {"name": "Kevin Shen", "affiliations": [2], "marks": []},
+      {"name": "Yiwu Zhong", "affiliations": [1], "marks": ["corresponding"], "homepage": "https://yiwuzhong.github.io/"}
+    ],
+    "affiliations": [
+      "State Key Laboratory of General AI, School of Intelligence Science and Technology, Peking University",
+      "Ngoro Robotics",
+      "School of Physics, Peking University",
+      "The University of Hong Kong"
+    ],
+    "marks": {
+      "equal": {"symbol": "⋆", "label": "Equal contribution"},
+      "lead": {"symbol": "†", "label": "Co-project leaders"},
+      "corresponding": {"symbol": "✉", "label": "Corresponding author"}
+    }
+  },
+
+  "projects": [
+    {
+      "slug": "real2simlab",
+      "name": "Real2SimLab",
+      "short": "Lab",
+      "tagline": "Unified platform · fair comparison · one command",
+      "card": "assets/img/cards/real2simlab-overview-light.svg",
+      "card_dark": "assets/img/cards/real2simlab-overview-dark.svg",
+      "card_middle": "assets/img/cards/real2simlab-overview-middle-light.svg",
+      "card_middle_dark": "assets/img/cards/real2simlab-overview-middle-dark.svg",
+      "card_alt": "Real2SimLab in the middle (build, freeze, re-run, score, report, and train), connected once to any method on the left, such as Codex, Claude Code, Gemini CLI, OpenCode, mini-swe-agent, Harbor agents or your own pipeline, and to any benchmark on the right, each scored its own way: Synthetic, IRIS, Physics-IQ, 4DCodeBench, PhysCodeGym, Video2World and PhySimCode",
+      "page_title": "Real2SimLab: A Unified Platform for Real-to-Simulation Transfer",
+      "page_description": "Real2SimLab: unified platform, fair comparison, one command. Any method, any benchmark: true to each, together on one scorecard."
+    },
+    {
+      "slug": "awesome-real2sim",
+      "name": "Awesome-Real2Sim",
+      "short": "Awesome",
+      "tagline": "A research map of nearly 300 papers",
+      "card": "assets/img/cards/awesome-real2sim-overview-light.svg",
+      "card_dark": "assets/img/cards/awesome-real2sim-overview-dark.svg",
+      "card_middle": "assets/img/cards/awesome-real2sim-overview-middle-light.svg",
+      "card_middle_dark": "assets/img/cards/awesome-real2sim-overview-middle-dark.svg",
+      "card_alt": "Overview of Awesome-Real2Sim: methods in six categories by what they deliver on the left; benchmarks in four categories by what is handed in, datasets and surveys on the right; in the middle, the list itself, with its methods, benchmarks, datasets, surveys and map",
+      "page_title": "Awesome-Real2Sim: A Research Map of Real-to-Simulation",
+      "page_description": "Awesome-Real2Sim: a research map of nearly 300 real-to-simulation papers, each sorted by what it delivers or asks for."
+    }
+  ],
+
+  "research": [
+    {
+      "type": "Publication",
+      "date": "2026",
+      "title": "Real2SimLab: A Unified Platform for Real-to-Simulation Transfer",
+      "description": "The paper on Real2SimLab and Awesome-Real2Sim · arXiv:2611.34849",
+      "href": "real2simlab/",
+      "href_when_arxiv": "arxiv"
+    },
+    {
+      "type": "Code",
+      "date": "2026",
+      "owner": "Real2SimHub/",
+      "title": "Real2SimLab",
+      "description": "The platform: any method, any benchmark, one scorecard",
+      "link": "real2simlab_code"
+    },
+    {
+      "type": "Docs",
+      "date": "2026",
+      "title": "Real2SimLab documentation",
+      "description": "Quickstart, the six benchmarks and a synthetic suite, guides for evaluation and training, and the specification",
+      "link": "real2simlab_docs"
+    },
+    {
+      "type": "Research map",
+      "date": "2026",
+      "owner": "Real2SimHub/",
+      "title": "Awesome-Real2Sim",
+      "description": "A research map of nearly 300 real-to-simulation papers, sorted by what each delivers",
+      "link": "awesome"
+    }
+  ],
+
+  "_contributors": "Shown on the home page sorted by surname (the last word), then given name: no order of contribution.",
+  "contributors": [
+    "Haorui Chen", "Chenhang Cui", "Jie Huang", "Jinfa Huang", "Rui Huang", "Zixiang Jiang", "Xiang Li", "Ruixun Liu",
+    "Tianyi Liu", "Zheng Lu", "Yunhe Ni", "Kevin Shen", "Zitong Shen", "Fangyuan Shi", "Qiwei Wu", "Yidi Wu", "Zeyu Xia",
+    "Mengyu Yang", "TianZe Zhang", "Yongchang Zhang", "Guangyu Zhao", "Yiwu Zhong", "Ningyu Zhou", "Bofan Zhu"
+  ],
+
+  "contact": {
+    "email": "jayhuang303hh@gmail.com",
+    "wechat_group": "assets/img/connect/wechat-group.jpg",
+    "wechat_personal": "assets/img/connect/wechat-personal.jpg"
+  },
+
+  "_orgs": "The contributors' institutions, in the owner's order, the same in the video (video/scenes/s01_open.html and s09_close.html, ROWS): row 1 PKU, Ngoro, THU, HKU (these four always first, left to right), NUS, SJTU, AgiBot; row 2 URochester (the University of Rochester's own short form), UCSD, BIGAI, HKUST (GZ), SEU, UESTC AI Club.",
+  "orgs": [
+    {"name": "Peking University", "logo": "assets/img/orgs/peking-university.webp"},
+    {"name": "Ngoro Robotics", "logo": "assets/img/orgs/ngoro-robotics.svg", "wide": true},
+    {"name": "Tsinghua University", "logo": "assets/img/orgs/tsinghua-university.webp"},
+    {"name": "The University of Hong Kong", "logo": "assets/img/orgs/the-university-of-hong-kong.webp"},
+    {"name": "National University of Singapore", "logo": "assets/img/orgs/national-university-of-singapore.webp"},
+    {"name": "Shanghai Jiao Tong University", "logo": "assets/img/orgs/shanghai-jiao-tong-university.webp"},
+    {"name": "AgiBot", "logo": "assets/img/orgs/agibot.webp"},
+    {"name": "University of Rochester", "logo": "assets/img/orgs/university-of-rochester.webp", "row": 2},
+    {"name": "UC San Diego", "logo": "assets/img/orgs/uc-san-diego.webp", "row": 2},
+    {"name": "BIGAI", "logo": "assets/img/orgs/bigai.webp", "row": 2},
+    {"name": "HKUST (Guangzhou)", "logo": "assets/img/orgs/hkust-guangzhou.webp", "row": 2},
+    {"name": "Southeast University", "logo": "assets/img/orgs/southeast-university.webp", "row": 2},
+    {"name": "UESTC AI Club", "logo": "assets/img/orgs/uestc-ai-club.webp", "row": 2}
+  ],
+
+  "_blog": "The blog: each entry is one card, on the blog page (blog/) under its category, and on the home page when featured (the home shows the featured cards in order: six on wide screens, fewer on narrow ones). A post on other people's work also needs an entry in \"posts\" and pages/blog/<slug>.html.",
+  "blog": [
+    {
+      "title": "Real2SimLab",
+      "label": "Platform",
+      "org": "PKU-VaLuE-Lab",
+      "text": "A unified platform for real-to-simulation.",
+      "href": "real2simlab/",
+      "image": "assets/img/blog/real2simlab.jpg",
+      "alt": "Real2SimLab in the middle, connected once to each method and each benchmark",
+      "category": "Our work",
+      "featured": true
+    },
+    {
+      "title": "Awesome-Real2Sim",
+      "label": "Research map",
+      "org": "PKU-VaLuE-Lab",
+      "text": "A research map of nearly 300 papers.",
+      "href": "awesome-real2sim/",
+      "image": "assets/img/blog/awesome-real2sim.jpg",
+      "alt": "The Awesome-Real2Sim list: methods, benchmarks, datasets, surveys and the map",
+      "category": "Our work",
+      "featured": true
+    },
+    {
+      "title": "PhysCodeGym",
+      "label": "Benchmark",
+      "org": "SJTU",
+      "category": "Benchmarks",
+      "text": "Coding agents rebuild 156 videos as Blender programs, checked for physical validity.",
+      "href": "blog/physcodegym/",
+      "image": "assets/img/blog/physcodegym.jpg",
+      "alt": "Figure 1 of the PhysCodeGym paper: reference frames and agent reconstructions of a domino cascade, milk pouring, cloth draping over a teapot and flags in wind",
+      "featured": true
+    },
+    {
+      "title": "PhySimCode",
+      "label": "Benchmark",
+      "org": "CMU",
+      "category": "Benchmarks",
+      "text": "From a video of a simulated phenomenon, a model states the physics and writes the code.",
+      "href": "blog/physimcode/",
+      "image": "assets/img/blog/physimcode.jpg",
+      "alt": "Figure 1 of the PhySimCode paper: a ring chart of 162 experiments in nine physical domains, with example scenes",
+      "featured": false
+    },
+    {
+      "title": "Video2World",
+      "label": "Benchmark",
+      "org": "Aether AI",
+      "text": "A coding agent turns an embodied video into an interactive simulated world.",
+      "href": "blog/video2world/",
+      "image": "assets/img/blog/video2world.jpg",
+      "alt": "Figure 1 of the Video2World paper: the 222 tasks by kind, coding agents, the scores of nine models, and real videos turned into interactive worlds",
+      "category": "Benchmarks",
+      "featured": true
+    },
+    {
+      "title": "4DCodeBench",
+      "label": "Benchmark",
+      "org": "Johns Hopkins",
+      "text": "An agent rebuilds a video of a dynamic scene as a 4D graphics program.",
+      "href": "blog/4dcodebench/",
+      "image": "assets/img/blog/4dcodebench.jpg",
+      "alt": "From Figure 1 of the 4DCodeBench paper: frames of a pasta machine video, the video rendered from an agent's program, and its 4D geometry over time",
+      "category": "Benchmarks",
+      "featured": false
+    },
+    {
+      "title": "IRIS",
+      "label": "Benchmark",
+      "org": "HBKU",
+      "category": "Benchmarks",
+      "text": "240 real 4K videos of eight dynamical systems, with measured parameters.",
+      "href": "blog/iris/",
+      "image": "assets/img/blog/iris.jpg",
+      "alt": "From Figure 1 of the IRIS paper: frames over time of a dropping ball, a falling ball, a pendulum and a cone sliding down a ramp",
+      "featured": false
+    },
+    {
+      "title": "Physics-IQ",
+      "label": "Benchmark",
+      "org": "Google DeepMind",
+      "category": "Benchmarks",
+      "text": "Real videos of 66 physical events: can a model predict what happens next?",
+      "href": "blog/physics-iq/",
+      "image": "assets/img/blog/physics-iq.jpg",
+      "alt": "Switch frames of Physics-IQ scenarios: dominoes, a rubber duck, a kettlebell, liquids, a Newton's cradle and others on a wooden table",
+      "featured": false
+    },
+    {
+      "title": "3DCodeVerse",
+      "label": "Method",
+      "org": "USC",
+      "category": "Methods",
+      "text": "A dataset of 3D programs, and agents that check and refine what coding agents build.",
+      "href": "blog/3dcodeverse/",
+      "image": "assets/img/blog/3dcodeverse.jpg",
+      "alt": "Figure 1 of the 3DCodeVerse paper: objects, articulated objects, scenes and graphics built by code, around an input, a program and the asset it renders",
+      "featured": true
+    },
+    {
+      "title": "Agentic Real2Sim",
+      "label": "Method",
+      "org": "UBC",
+      "category": "Methods",
+      "text": "Vision-language agents turn robot recordings into MuJoCo episode twins.",
+      "href": "blog/agentic-real2sim/",
+      "image": "assets/img/blog/agentic-real2sim.jpg",
+      "alt": "Figure 1 of the Agentic Real2Sim paper: visual processing of a robot video, physical prior inference, scene preparation and grasp optimization",
+      "featured": true
+    }
+  ],
+
+  "posts": [
+    {
+      "slug": "physcodegym",
+      "title": "PhysCodeGym: Benchmarking Coding Agents for Physically Verifiable 4D Reconstruction",
+      "description": "PhysCodeGym (Shanghai Jiao Tong University and others) asks coding agents to rebuild 156 videos as Blender programs and checks them physically. What it measures, what it found, and how to run it in Real2SimLab."
+    },
+    {
+      "slug": "physimcode",
+      "title": "PhySimCode: A Benchmark and Evaluation Method for Physics Video to Code Generation",
+      "description": "PhySimCode (Carnegie Mellon University, Amazon AGI) asks a model to infer the physics of a video and write code that regenerates it. What it measures, what it found, and how to run it in Real2SimLab."
+    },
+    {
+      "slug": "video2world",
+      "title": "Video2World: Benchmarking Coding Agents for Interactive World Modeling from Embodied Videos",
+      "description": "Video2World (Aether AI, UC San Diego) asks coding agents to turn an embodied video into an interactive simulated world. What it measures, what it found, and how to run it in Real2SimLab."
+    },
+    {
+      "slug": "4dcodebench",
+      "title": "4DCodeBench: Benchmarking Agents on Inverse Graphics of Dynamic Scenes",
+      "description": "4DCodeBench (Johns Hopkins, Stanford, MPI-IS, MIT) asks agents to rebuild a video of a dynamic scene as an executable 4D graphics program. What it measures, what it found, and how to run it in Real2SimLab."
+    },
+    {
+      "slug": "iris",
+      "title": "IRIS: A Real-World Benchmark for Inverse Recovery and Identification of Physical Dynamic Systems from Monocular Video",
+      "description": "IRIS (Hamad Bin Khalifa University, Texas A&M) records 240 real 4K videos of eight dynamical systems with measured parameters. What it measures, what it found, and how to run it in Real2SimLab."
+    },
+    {
+      "slug": "physics-iq",
+      "title": "Physics-IQ: Do Generative Video Models Understand Physical Principles?",
+      "description": "Physics-IQ (Google DeepMind) films 66 physical events twice from three views and asks a model to predict how each continues. What it measures, what it found, and how to run it in Real2SimLab."
+    },
+    {
+      "slug": "3dcodeverse",
+      "title": "3DCodeVerse: Exploring 3D Worlds as Code",
+      "description": "3DCodeVerse (University of Southern California and others) gives coding agents a dataset of executable 3D programs and a harness that checks and refines what they build. How it works and what the paper found."
+    },
+    {
+      "slug": "agentic-real2sim",
+      "title": "Agentic Real2Sim: Physics-based World Modeling with Vision-Language Agents",
+      "description": "Agentic Real2Sim (University of British Columbia and others) uses vision-language agents to convert robot recordings into simulatable MuJoCo episode twins. How it works and what the paper found."
+    }
+  ]
+}

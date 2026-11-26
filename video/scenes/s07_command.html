@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>One command</title>
+<link rel="stylesheet" href="common.css">
+<script src="../build/clips/clips.js"></script>
+<style>
+.win { position: absolute; border-radius: 26px; background: #0a0f1f; box-shadow: 0 0 0 2px #2f3d6e, 0 30px 70px rgba(0,0,0,.5); overflow: hidden; }
+.bar { height: 78px; display: flex; align-items: center; gap: 14px; padding: 0 28px; background: #141c38; font-size: 44px; font-weight: 700; color: var(--soft); }
+.bar i { width: 18px; height: 18px; border-radius: 50%; background: #334155; display: inline-block; }
+.bar span { margin-left: 12px; }
+pre { margin: 0; font-family: "Noto Sans Mono", monospace; font-size: 44px; line-height: 1.42; color: #e2e8f0; white-space: pre; }
+.k { color: #93c5fd; } .s { color: #fdba74; } .p { color: #a5b4fc; }
+.caret { display: inline-block; width: 24px; height: 50px; background: #a5b4fc; vertical-align: -8px; }
+#sc table { border-collapse: separate; border-spacing: 0 16px; width: 100%; }
+#sc th { font-size: 44px; font-weight: 700; color: var(--muted); text-align: center; font-family: "Noto Sans Mono", monospace; }
+#sc td { font-size: 44px; font-weight: 700; }
+#sc td.name { display: flex; align-items: center; gap: 18px; }
+#sc td.name img { width: 56px; height: 56px; border-radius: 12px; background: #fff; }
+.blur { display: block; margin: 0 auto; width: 200px; height: 54px; border-radius: 14px; background: linear-gradient(90deg, #475569, #64748b 60%, #475569); filter: blur(7px); opacity: .8; }
+#steps { display: flex; gap: 18px; padding: 8px 40px 30px; }
+#steps img { width: 64px; height: 64px; border-radius: 16px; }
+</style></head>
+<body><div class="stage">
+  <div class="beat" data-in="0.1" data-fx="down"><img class="lg" src="../../assets/brand/svg/real2simlab-logo-dark.svg" alt="Real2SimLab"><span class="sep"></span><span class="num">3</span><span>One command</span></div>
+
+  <div class="win" style="left:80px;top:190px;width:680px;height:640px" data-in="0.3">
+    <div class="bar"><i></i><i></i><i></i><span>example.toml</span></div>
+    <pre style="padding:26px 38px"><span class="p">[[tasks.benchmarks]]</span>
+<span class="k">name</span> = <span class="s">"physicsiq"</span>
+<span class="p">[[tasks.benchmarks]]</span>
+<span class="k">name</span> = <span class="s">"iris"</span>
+<span class="p">[[methods]]</span>
+<span class="k">name</span> = <span class="s">"codex"</span>
+<span class="p">[[methods]]</span>
+<span class="k">name</span> = <span class="s">"claude_code"</span></pre>
+  </div>
+
+  <div class="win" style="left:820px;top:190px;width:1020px;height:282px" data-in="1.2">
+    <div class="bar"><i></i><i></i><i></i><span>terminal</span></div>
+    <pre style="padding:24px 40px 0"><span class="p">$</span> <span id="cmd"></span></pre>
+    <div id="steps">
+      <img src="../assets/icons/step-build.svg" alt=""><img src="../assets/icons/step-freeze.svg" alt=""><img src="../assets/icons/step-rerun.svg" alt=""><img src="../assets/icons/step-score.svg" alt=""><img src="../assets/icons/step-report.svg" alt="">
+    </div>
+  </div>
+
+  <div class="win" id="sc" style="left:820px;top:510px;width:1020px;height:320px;padding:14px 40px 0" data-in="4.0" data-fx="up">
+    <table>
+      <tr><th style="text-align:left;font-family:'Noto Sans',sans-serif;color:#f1f5f9">Scorecard</th><th>codex</th><th>claude_code</th></tr>
+      <tr><td class="name"><img src="../assets/icons/physics-iq.svg" alt="">Physics-IQ</td><td><i class="blur"></i></td><td><i class="blur"></i></td></tr>
+      <tr><td class="name"><img src="../assets/icons/iris.svg" alt="">IRIS</td><td><i class="blur"></i></td><td><i class="blur"></i></td></tr>
+    </table>
+  </div>
+
+  <div class="center say" style="top:900px" data-in="0.5" data-out="4.6">Write one experiment file: any methods, any benchmarks.</div>
+  <div class="center say" style="top:900px" data-in="4.9">One file. One command. One scorecard.</div>
+</div>
+<script>
+window.DURATION = 9.0;
+const CMD = "r2s run example.toml";
+window.scene = (t) => {
+  const n = Math.max(0, Math.min(CMD.length, Math.floor((t - 1.7) * 18)));
+  const done = n >= CMD.length;
+  document.getElementById("cmd").innerHTML = CMD.slice(0, n) + (!done || Math.floor(t * 2) % 2 === 0 ? '<span class="caret"></span>' : "");
+  document.querySelectorAll("#steps img").forEach((e, i) => {
+    const k = ease.out(ramp(t, 3.0 + i * 0.18, 3.3 + i * 0.18));
+    e.style.opacity = k.toFixed(3); e.style.transform = `scale(${lerp(0.6, 1, k)})`;
+  });
+};
+</script>
+<script src="common.js"></script>
+</body></html>

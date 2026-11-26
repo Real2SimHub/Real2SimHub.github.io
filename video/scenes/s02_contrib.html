@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Two open-source resources</title>
+<link rel="stylesheet" href="common.css">
+<script src="../build/clips/clips.js"></script>
+<style>
+/* The home page's "Open-Source Resources": Real2SimLab on the left, Awesome-Real2Sim on the right. Each point has
+   the icon it has on the project's page (scripts/build.py ICONS), on a tile in the project's colours. */
+#title { top: 92px; font-size: 66px; }
+.tags { position: absolute; left: 0; right: 0; top: 196px; display: flex; justify-content: center; gap: 30px; }
+.tag { display: flex; align-items: center; gap: 16px; padding: 12px 34px 14px 20px; border-radius: 999px; font-size: 42px; font-weight: 700; color: #f5f3ff;
+  background: rgba(124, 58, 237, .2); box-shadow: inset 0 0 0 2px rgba(167, 139, 250, .55), 0 12px 32px rgba(0, 0, 0, .35); }
+.tag svg { width: 50px; height: 50px; }
+.tag.open svg { color: #86efac; }
+.tag.easy svg { color: #fcd34d; }
+.pc { position: absolute; top: 330px; width: 820px; height: 670px; border-radius: 30px; padding: 52px 0 0;
+  background: linear-gradient(180deg, rgba(30, 41, 82, .9), rgba(18, 26, 51, .95)); box-shadow: 0 0 0 2px #2f3d6e, 0 30px 70px rgba(0,0,0,.5); }
+.pc img { height: 196px; width: auto; display: block; margin: 0 auto 46px; }
+.pts { list-style: none; margin: 0 auto; padding: 0; width: fit-content; display: grid; gap: 26px; }
+.pts li { display: flex; align-items: center; gap: 28px; font-size: 44px; font-weight: 700; color: #e2e8f0; white-space: nowrap; }
+.ico { flex: none; width: 82px; height: 82px; border-radius: 22px; display: grid; place-items: center; color: #fff; box-shadow: 0 10px 26px rgba(0, 0, 0, .35); }
+.ico svg { width: 46px; height: 46px; }
+.lab .ico { background: linear-gradient(135deg, #7c3aed, #2563eb 55%, #0891b2); }
+.awe .ico { background: linear-gradient(135deg, #c026d3, #e11d48 55%, #ea580c); }
+</style></head>
+<body><div class="stage">
+  <div class="center say" id="title" data-in="0.2">Two open-source resources</div>
+  <div class="tags">
+    <div class="tag open" data-in="0.6" data-fx="scale"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Open source</div>
+    <div class="tag easy" data-in="0.8" data-fx="scale"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 14.2s1.5 2.3 4 2.3 4-2.3 4-2.3"/><path d="M9 9.5h.01M15 9.5h.01" stroke-width="3"/></svg>Easy to use</div>
+  </div>
+
+  <div class="pc lab" style="left:120px" data-in="1.0" data-fx="up" data-dist="40">
+    <img src="../../assets/brand/svg/real2simlab-logo-stacked-dark.svg" alt="Real2SimLab">
+    <ul class="pts">
+      <li data-in="1.6" data-fx="left"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="5" r="1.8"/><circle cx="4" cy="19" r="1.8"/><circle cx="20" cy="5" r="1.8"/><circle cx="20" cy="19" r="1.8"/><path d="M5.5 6.2 9.6 10M5.5 17.8 9.6 14M18.5 6.2 14.4 10M18.5 17.8 14.4 14"/></svg></span>Unified platform</li>
+      <li data-in="1.8" data-fx="left"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M4 7h16"/><path d="M4 7 1.5 13a3 3 0 0 0 5 0z"/><path d="M20 7l-2.5 6a3 3 0 0 0 5 0z"/></svg></span>Fair comparison</li>
+      <li data-in="2.0" data-fx="left"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="m7 9 3 3-3 3M12.5 15H17"/></svg></span>One command</li>
+    </ul>
+  </div>
+  <div class="pc awe" style="left:980px" data-in="1.4" data-fx="up" data-dist="40">
+    <img src="../../assets/brand/svg/awesome-real2sim-logo-stacked-dark.svg" alt="Awesome-Real2Sim">
+    <ul class="pts">
+      <li data-in="2.2" data-fx="left"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5z"/><path d="M9 4v13M15 6.5v13"/></svg></span>A research map</li>
+      <li data-in="2.4" data-fx="left"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></span>Nearly 300 papers</li>
+      <li data-in="2.6" data-fx="left"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="6" r="2.2"/><path d="M7.2 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7.8"/></svg></span>A roadmap of key works</li>
+    </ul>
+  </div>
+</div>
+<script>window.DURATION = 7.0;</script>
+<script src="common.js"></script>
+</body></html>

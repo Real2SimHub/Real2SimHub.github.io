@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Awesome-Real2Sim</title>
+<link rel="stylesheet" href="common.css">
+<script src="../build/clips/clips.js"></script>
+<style>
+/* The hand-drawn roadmap (assets/img/figures/awesome/roadmap.svg, 1440 x 796) on a white panel: a violet line
+   runs along its route and each work appears as the line reaches it. */
+#view { position: absolute; left: 272px; top: 142px; width: 1376px; height: 761px; border-radius: 26px; overflow: hidden;
+  background: #fff; box-shadow: 0 24px 70px rgba(0, 0, 0, .5); }
+#rm, #trace { position: absolute; left: 0; top: 0; width: 1440px; height: 796px; transform-origin: 0 0; transform: scale(0.9556); }
+/* The categories: a tree that unfolds from left to right. */
+#tree { position: absolute; inset: 0; }
+#tree path { fill: none; stroke-width: 4; stroke-linecap: round; }
+.root { position: absolute; left: 80px; width: 480px; border-radius: 26px; padding: 24px 30px 28px; }
+.root b { display: block; font-size: 62px; line-height: 1.1; letter-spacing: -.01em; }
+.root span { display: block; font-size: 42px; line-height: 1.2; margin-top: 8px; white-space: nowrap; }
+.leaf { position: absolute; left: 770px; width: 560px; height: 70px; border-radius: 18px; padding: 0 28px; display: flex; align-items: center; font-size: 44px; font-weight: 700; white-space: nowrap; }
+.bar { position: absolute; left: 1344px; height: 26px; border-radius: 13px; }
+.num { position: absolute; font-size: 46px; font-weight: 700; line-height: 70px; font-variant-numeric: tabular-nums; }
+.m.root, .m.leaf { background: rgba(37, 99, 235, .16); box-shadow: 0 0 0 3px #6366f1; color: #e0e7ff; } .m.num { color: #a5b4fc; } .m.bar { background: linear-gradient(90deg, #4f46e5, #818cf8); } .m.root span { color: #a5b4fc; }
+.b.root, .b.leaf { background: rgba(245, 158, 11, .13); box-shadow: 0 0 0 3px #f59e0b; color: #fef3c7; } .b.num { color: #fcd34d; } .b.bar { background: linear-gradient(90deg, #d97706, #fbbf24); } .b.root span { color: #fcd34d; }
+</style></head>
+<body><div class="stage">
+  <div class="beat" data-in="0.1" data-fx="down"><img class="lg" src="../../assets/brand/svg/awesome-real2sim-logo-dark.svg" alt="Awesome-Real2Sim"><span class="sep"></span><span>A research map</span></div>
+
+  <div id="view"><img id="rm" src="../../assets/img/figures/awesome/roadmap.svg" alt="">
+    <svg id="trace" viewBox="0 0 1440 796"><defs><mask id="pills" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="796"><rect width="1440" height="796" fill="#fff"/><g id="holes"></g></mask>
+      <filter id="glow" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="5"/></filter></defs>
+      <g id="covers"></g>
+      <path id="run" mask="url(#pills)" d="M108 72H1256A76 93.5 0 0 1 1256 259H184A76 93.5 0 0 0 184 446H1256A76 93.5 0 0 1 1256 633H108" fill="none" stroke="#7c3aed" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1.01 1.01"/>
+      <g id="rings"></g>
+      <circle id="halo" r="16" fill="#a78bfa" filter="url(#glow)"/><circle id="head" r="9" fill="#7c3aed" stroke="#fff" stroke-width="3"/>
+    </svg></div>
+  <div class="center say" id="cap" style="top:940px" data-in="0.5" data-out="6.0">Nearly 300 papers, key ones on a roadmap.</div>
+
+  <svg id="tree" viewBox="0 0 1920 1080"></svg>
+  <div id="nodes"></div>
+</div>
+<script>
+window.DURATION = 13.0;
+// Categories and counts of Awesome-Real2Sim (data/works.json, 2026-11-22): 162 methods and 54 benchmarks.
+const TREE = [
+  { cls: "m", at: 6.4, title: "Methods", by: "by what they deliver", stroke: "#6366f1", top: 168,
+    leaves: [["physical twin", 66], ["simulation-ready asset", 21], ["scene-level simulation", 46], ["simulation program", 14], ["learned simulator", 15]] },
+  { cls: "b", at: 8.6, title: "Benchmarks", by: "by what they ask for", stroke: "#f59e0b", top: 648,
+    leaves: [["a runnable simulation", 15], ["answers", 13], ["generated frames", 16], ["sim vs. reality", 10]] },
+];
+const STEP = 88, LEAF_H = 70, ROOT_H = 170, BAR = 380 / 66;
+const parts = [];
+(() => {
+  const svg = document.getElementById("tree"), box = document.getElementById("nodes"), ns = "http://www.w3.org/2000/svg";
+  const add = (cls, style, html) => { const e = document.createElement("div"); e.className = cls; e.style.cssText = style; e.innerHTML = html; box.appendChild(e); return e; };
+  for (const g of TREE) {
+    const mid = g.top + ((g.leaves.length - 1) * STEP + LEAF_H) / 2;
+    const root = add(`${g.cls} root`, `top:${mid - ROOT_H / 2}px;height:${ROOT_H}px`, `<b>${g.title}</b><span>${g.by}</span>`);
+    parts.push({ el: root, t: g.at });
+    g.leaves.forEach(([name, n], i) => {
+      const y = g.top + i * STEP, cy = y + LEAF_H / 2, t = g.at + 0.4 + i * 0.16;
+      const p = document.createElementNS(ns, "path");
+      p.setAttribute("d", `M562 ${mid} C670 ${mid} 660 ${cy} 768 ${cy}`); p.setAttribute("stroke", g.stroke); p.setAttribute("pathLength", "1"); p.setAttribute("stroke-dasharray", "1.01 1.01");
+      svg.appendChild(p);
+      const bar = add(`${g.cls} bar`, `top:${cy - 13}px`, ""), num = add(`${g.cls} num`, `top:${y}px`, "0");
+      parts.push({ path: p, t }, { el: add(`${g.cls} leaf`, `top:${y}px`, name), t: t + 0.35 }, { bar, num, n, t: t + 0.55 });
+    });
+  }
+})();
+// The cards of the roadmap (x, y of each 180 x 103 card, from the SVG), in the order of its route.
+const CARDS = [[95,106],[298,106],[501,106],[704,106],[907,106],[1110,106],[1165,293],[962,293],[759,293],[556,293],[353,293],[150,293],
+  [95,480],[298,480],[501,480],[704,480],[907,480],[1110,480],[1165,667],[951,667],[737,667],[523,667],[309,667],[95,667]];
+// The date pills (x, y of each 98.5 x 32 pill, from the SVG): the line passes under them. Some sit between two cards.
+const PILLS = [[135.75,56],[338.75,56],[541.75,56],[744.75,56],[947.75,56],[1150.75,56],[1205.75,243],[1002.75,243],[799.75,243],
+  [596.75,243],[292.25,243],[237.25,430],[541.75,430],[744.75,430],[947.75,430],[1150.75,430],[1205.75,617],[991.75,617],[777.75,617],[349.75,617]];
+const RUN0 = 0.4, RUN1 = 4.7;
+const ns = "http://www.w3.org/2000/svg", run = document.getElementById("run"), head = document.getElementById("head"), halo = document.getElementById("halo");
+const mk = (tag, attrs, parent) => { const e = document.createElementNS(ns, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+const covers = [], rings = [];
+let total = 0, at = [];
+window.setup = () => {
+  total = run.getTotalLength();
+  const N = 3000, pts = [];
+  for (let i = 0; i <= N; i++) { const q = run.getPointAtLength(total * i / N); pts.push([q.x, q.y, i / N]); }
+  CARDS.forEach(([x, y]) => {
+    const cx = x + 90, cy = y - 34;
+    let best = pts[0], bd = 1e9;
+    for (const q of pts) { const d = Math.hypot(q[0] - cx, q[1] - cy); if (d < bd) { bd = d; best = q; } }
+    at.push(best[2]);
+    covers.push(mk("rect", { x: x - 5, y: y - 20, width: 190, height: 126, fill: "#fff" }, document.getElementById("covers")));
+    rings.push(mk("rect", { x: x - 3, y: y - 3, width: 186, height: 109, rx: 12, fill: "none", stroke: "#7c3aed", "stroke-width": 4 }, document.getElementById("rings")));
+  });
+  PILLS.forEach(([x, y]) => mk("rect", { x: x - 3, y: y - 1, width: 104.5, height: 34, rx: 17, fill: "#000" }, document.getElementById("holes")));
+};
+window.scene = (t) => {
+  const k = ease.inOut(ramp(t, RUN0, RUN1));
+  run.setAttribute("stroke-dashoffset", (1.01 * (1 - k)).toFixed(4));
+  run.style.visibility = k > 0 ? "visible" : "hidden";
+  const q = run.getPointAtLength(total * k), on = k > 0 && k < 1 ? 1 : 1 - ramp(t, RUN1, RUN1 + 0.4);
+  for (const c of [head, halo]) { c.setAttribute("cx", q.x.toFixed(1)); c.setAttribute("cy", q.y.toFixed(1)); c.style.opacity = (on * ramp(t, RUN0, RUN0 + 0.2)).toFixed(3); }
+  at.forEach((a, i) => {
+    // The time at which the line reaches card i (inverse of the eased progress, found by bisection).
+    let lo = RUN0, hi = RUN1;
+    for (let j = 0; j < 30; j++) { const m = (lo + hi) / 2; if (ease.inOut(ramp(m, RUN0, RUN1)) < a) lo = m; else hi = m; }
+    const r = ease.out(ramp(t, lo, lo + 0.35));
+    covers[i].style.opacity = (1 - r).toFixed(3);
+    rings[i].style.opacity = (Math.sin(Math.PI * ramp(t, lo, lo + 0.9)) * 0.9).toFixed(3);
+  });
+  const view = document.getElementById("view");
+  view.style.opacity = (ramp(t, 0.0, 0.4) * (1 - ramp(t, 5.9, 6.4))).toFixed(3);
+  // The tree unfolds from left to right: root, branches, leaves, then the number of papers.
+  for (const q of parts) {
+    const k = ease.out(ramp(t, q.t, q.t + 0.45));
+    if (q.path) { q.path.setAttribute("stroke-dashoffset", (1.01 * (1 - k)).toFixed(4)); q.path.style.visibility = k > 0 ? "visible" : "hidden"; }
+    else if (q.bar) {
+      const w = ease.inOut(ramp(t, q.t, q.t + 0.7));
+      q.bar.style.width = `${(q.n * BAR * w).toFixed(1)}px`; q.bar.style.opacity = w > 0 ? 1 : 0;
+      q.num.style.left = `${(1344 + q.n * BAR * w + 20).toFixed(1)}px`; q.num.textContent = Math.round(q.n * w); q.num.style.opacity = k.toFixed(3);
+    } else { q.el.style.opacity = k.toFixed(3); q.el.style.transform = `translateX(${((1 - k) * -24).toFixed(1)}px)`; }
+  }
+};
+</script>
+<script src="common.js"></script>
+</body></html>

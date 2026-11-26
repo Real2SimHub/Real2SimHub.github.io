@@ -1,0 +1,233 @@
+{
+ "about": "Real recordings in the 5x5 wall of the 'Real to simulation' scene, row by row. Commons files are downloaded by `make_video.py fetch` into R2S_COMMONS; the others come from the Lab's data cache (R2S_DATA).",
+ "clips": [
+  {
+   "name": "waves",
+   "commons": "Ocean surface waves 02.ogv",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9b/Ocean_surface_waves_02.ogv/Ocean_surface_waves_02.ogv.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Ocean_surface_waves_02.ogv",
+   "start": 5,
+   "credit": "Ocean surface waves 02 by Mostafameraji, CC0, Wikimedia Commons",
+   "license": "CC0"
+  },
+  {
+   "name": "droid_bowl",
+   "data": [
+    "Video2World/9cac08429be0/samples/droid_iris_2023_03_02_16h_02m_41s_bowl_hand/video.mp4"
+   ],
+   "crop": "640:360:0:140",
+   "interpolate": true,
+   "credit": "DROID, CC BY 4.0 (via Video2World)",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "name": "fill_glass",
+   "data": [
+    "Physics-IQ/original/split-videos/conditioning/30FPS/0065_conditioning-videos_30FPS_perspective-center_take-1_trimmed-fill-glass-red-drink.mp4",
+    "Physics-IQ/original/split-videos/testing/30FPS/0065_testing-videos_30FPS_perspective-center_take-1_trimmed-fill-glass-red-drink.mp4"
+   ],
+   "credit": "Physics-IQ, fill-glass-red-drink, CC BY 4.0",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "name": "crosswalk",
+   "commons": "DiagonalCrosswalkYongeDundas.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/d/d2/DiagonalCrosswalkYongeDundas.webm/DiagonalCrosswalkYongeDundas.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:DiagonalCrosswalkYongeDundas.webm",
+   "start": 40,
+   "credit": "DiagonalCrosswalkYongeDundas by Raysonho @ Open Grid Scheduler / Grid Engine, CC0, Wikimedia Commons",
+   "license": "CC0"
+  },
+  {
+   "name": "cat",
+   "commons": "Cat playing in Taiwan.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/7/72/Cat_playing_in_Taiwan.webm/Cat_playing_in_Taiwan.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Cat_playing_in_Taiwan.webm",
+   "start": 45,
+   "credit": "Cat playing in Taiwan by MiNe, CC BY 2.0, Wikimedia Commons",
+   "license": "CC-BY-2.0"
+  },
+  {
+   "name": "package",
+   "commons": "Robot package handling.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/2/22/Robot_package_handling.webm/Robot_package_handling.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Robot_package_handling.webm",
+   "start": 0,
+   "credit": "Robot package handling by newscreators, CC BY 3.0, Wikimedia Commons",
+   "license": "CC-BY-3.0",
+   "crop": "iw*0.84:ih*0.84:iw*0.16:0"
+  },
+  {
+   "name": "clouds",
+   "commons": "Timelapse of Clouds over Bellevue Canyon.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/d/d5/Timelapse_of_Clouds_over_Bellevue_Canyon.webm/Timelapse_of_Clouds_over_Bellevue_Canyon.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Timelapse_of_Clouds_over_Bellevue_Canyon.webm",
+   "start": 0,
+   "credit": "Timelapse of Clouds over Bellevue Canyon by Extemporalist, CC0, Wikimedia Commons",
+   "license": "CC0"
+  },
+  {
+   "name": "lit_candle",
+   "data": [
+    "Physics-IQ/original/split-videos/conditioning/30FPS/0092_conditioning-videos_30FPS_perspective-center_take-1_trimmed-lit-candle.mp4",
+    "Physics-IQ/original/split-videos/testing/30FPS/0092_testing-videos_30FPS_perspective-center_take-1_trimmed-lit-candle.mp4"
+   ],
+   "credit": "Physics-IQ, lit-candle, CC BY 4.0",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "name": "horse",
+   "commons": "A grazing horse at the Écomusée de la Bintinais.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/3/3a/A_grazing_horse_at_the_%C3%89comus%C3%A9e_de_la_Bintinais.webm/A_grazing_horse_at_the_%C3%89comus%C3%A9e_de_la_Bintinais.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:A_grazing_horse_at_the_%C3%89comus%C3%A9e_de_la_Bintinais.webm",
+   "start": 10,
+   "credit": "A grazing horse at the Écomusée de la Bintinais by Seb35, CC0, Wikimedia Commons",
+   "license": "CC0"
+  },
+  {
+   "name": "strider",
+   "commons": "Strider Robot Climbing - 12 leg Version.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/7/7a/Strider_Robot_Climbing_-_12_leg_Version.webm/Strider_Robot_Climbing_-_12_leg_Version.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Strider_Robot_Climbing_-_12_leg_Version.webm",
+   "start": 4,
+   "credit": "Strider Robot Climbing - 12 leg Version by DIY Walkers, CC BY 3.0, Wikimedia Commons",
+   "license": "CC-BY-3.0"
+  },
+  {
+   "name": "coffee",
+   "commons": "Moccamaster coffee maker.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/3/3c/Moccamaster_coffee_maker.webm/Moccamaster_coffee_maker.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Moccamaster_coffee_maker.webm",
+   "start": 70,
+   "credit": "Moccamaster coffee maker by Erik Pålsson, CC BY 3.0, Wikimedia Commons",
+   "license": "CC-BY-3.0"
+  },
+  {
+   "name": "ducks",
+   "data": [
+    "Physics-IQ/original/split-videos/conditioning/30FPS/0055_conditioning-videos_30FPS_perspective-left_take-1_trimmed-duck-and-dominos.mp4",
+    "Physics-IQ/original/split-videos/testing/30FPS/0055_testing-videos_30FPS_perspective-left_take-1_trimmed-duck-and-dominos.mp4"
+   ],
+   "credit": "Physics-IQ, duck-and-dominos, CC BY 4.0",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "name": "rain",
+   "commons": "Rain in Sonoma - December 2025 - Sarah Stierch.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/d/dd/Rain_in_Sonoma_-_December_2025_-_Sarah_Stierch.webm/Rain_in_Sonoma_-_December_2025_-_Sarah_Stierch.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Rain_in_Sonoma_-_December_2025_-_Sarah_Stierch.webm",
+   "start": 7,
+   "credit": "Rain in Sonoma - December 2025 - Sarah Stierch by Missvain, CC0, Wikimedia Commons",
+   "license": "CC0"
+  },
+  {
+   "name": "reachy",
+   "commons": "Pollen Robotics - Reachy is back...and it's mobile!.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/4/40/Pollen_Robotics_-_Reachy_is_back...and_it%27s_mobile%21.webm/Pollen_Robotics_-_Reachy_is_back...and_it%27s_mobile%21.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Pollen_Robotics_-_Reachy_is_back...and_it%27s_mobile!.webm",
+   "start": 150,
+   "credit": "Pollen Robotics - Reachy is back...and it's mobile! by Pollen Robotics, CC BY 3.0, Wikimedia Commons",
+   "license": "CC-BY-3.0"
+  },
+  {
+   "name": "fire",
+   "commons": "Burning PET bottle.ogv",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/3/36/Burning_PET_bottle.ogv/Burning_PET_bottle.ogv.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Burning_PET_bottle.ogv",
+   "start": 14,
+   "credit": "Burning PET bottle by 01x07x2022000, CC0, Wikimedia Commons",
+   "license": "CC0"
+  },
+  {
+   "name": "street",
+   "commons": "Traffic on a cobbled street - soundscape.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e3/Traffic_on_a_cobbled_street_-_soundscape.webm/Traffic_on_a_cobbled_street_-_soundscape.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Traffic_on_a_cobbled_street_-_soundscape.webm",
+   "start": 4,
+   "credit": "Traffic on a cobbled street - soundscape by Sounds of Changes, CC BY 3.0, Wikimedia Commons",
+   "license": "CC-BY-3.0"
+  },
+  {
+   "name": "balloon",
+   "data": [
+    "Physics-IQ/original/split-videos/conditioning/30FPS/0037_conditioning-videos_30FPS_perspective-left_take-1_trimmed-blow-balloon.mp4",
+    "Physics-IQ/original/split-videos/testing/30FPS/0037_testing-videos_30FPS_perspective-left_take-1_trimmed-blow-balloon.mp4"
+   ],
+   "credit": "Physics-IQ, blow-balloon, CC BY 4.0",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "name": "gull",
+   "commons": "Young seagull calling.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9a/Young_seagull_calling.webm/Young_seagull_calling.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Young_seagull_calling.webm",
+   "start": 4,
+   "credit": "Young seagull calling by Andy Li, CC0, Wikimedia Commons",
+   "license": "CC0"
+  },
+  {
+   "name": "lab_arm",
+   "commons": "Robot arm R1 operation of the autonomous laboratory for the accelerated synthesis of novel materials (handling powders and slurries in the sample preparation station).webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/0/0f/Robot_arm_R1_operation_of_the_autonomous_laboratory_for_the_accelerated_synthesis_of_novel_materials_%28handling_powders_and_slurries_in_the_sample_preparation_station%29.webm/Robot_arm_R1_operation_of_the_autonomous_laboratory_for_the_accelerated_synthesis_of_novel_materials_%28handling_powders_and_slurries_in_the_sample_preparation_station%29.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Robot_arm_R1_operation_of_the_autonomous_laboratory_for_the_accelerated_synthesis_of_novel_materials_(handling_powders_and_slurries_in_the_sample_preparation_station).webm",
+   "start": 34,
+   "credit": "Robot arm R1 operation of the autonomous laboratory for the accelerated synthesis of novel materials (handling powders and slurries in the sample preparation station) by Nathan J. Szymanski et al., CC BY 4.0, Wikimedia Commons",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "name": "domino",
+   "data": [
+    "Physics-IQ/original/split-videos/conditioning/30FPS/0046_conditioning-videos_30FPS_perspective-left_take-1_trimmed-domino-in-juice.mp4",
+    "Physics-IQ/original/split-videos/testing/30FPS/0046_testing-videos_30FPS_perspective-left_take-1_trimmed-domino-in-juice.mp4"
+   ],
+   "credit": "Physics-IQ, domino-in-juice, CC BY 4.0",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "name": "teapot",
+   "data": [
+    "Physics-IQ/original/split-videos/conditioning/30FPS/0175_conditioning-videos_30FPS_perspective-left_take-1_trimmed-teapot-rotates.mp4",
+    "Physics-IQ/original/split-videos/testing/30FPS/0175_testing-videos_30FPS_perspective-left_take-1_trimmed-teapot-rotates.mp4"
+   ],
+   "credit": "Physics-IQ, teapot-rotates, CC BY 4.0",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "name": "fountain",
+   "commons": "Video fountain Lützowplatz Eberhard Fink Berlin-Tiergarten.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/bb/Video_fountain_L%C3%BCtzowplatz_Eberhard_Fink_Berlin-Tiergarten.webm/Video_fountain_L%C3%BCtzowplatz_Eberhard_Fink_Berlin-Tiergarten.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Video_fountain_L%C3%BCtzowplatz_Eberhard_Fink_Berlin-Tiergarten.webm",
+   "start": 8,
+   "credit": "Video fountain Lützowplatz Eberhard Fink Berlin-Tiergarten by Singlespeedfahrer, CC0, Wikimedia Commons",
+   "license": "CC0"
+  },
+  {
+   "name": "droid_block",
+   "data": [
+    "Video2World/9cac08429be0/samples/droid_tri_2023_08_09_08h_56m_36s_block_hand/video.mp4"
+   ],
+   "crop": "640:360:0:140",
+   "interpolate": true,
+   "credit": "DROID, CC BY 4.0 (via Video2World)",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "name": "snow",
+   "commons": "Snow falling in Charlton MA 2025-12-14.webm",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/5/56/Snow_falling_in_Charlton_MA_2025-12-14.webm/Snow_falling_in_Charlton_MA_2025-12-14.webm.480p.vp9.webm",
+   "page": "https://commons.wikimedia.org/wiki/File:Snow_falling_in_Charlton_MA_2025-12-14.webm",
+   "start": 3,
+   "credit": "Snow falling in Charlton MA 2025-12-14 by Peter Cooper Jr., CC0, Wikimedia Commons",
+   "license": "CC0"
+  },
+  {
+   "name": "basket",
+   "data": [
+    "Physics-IQ/original/split-videos/conditioning/30FPS/0013_conditioning-videos_30FPS_perspective-left_take-1_trimmed-ball-in-basket.mp4",
+    "Physics-IQ/original/split-videos/testing/30FPS/0013_testing-videos_30FPS_perspective-left_take-1_trimmed-ball-in-basket.mp4"
+   ],
+   "credit": "Physics-IQ, ball-in-basket, CC BY 4.0",
+   "license": "CC-BY-4.0"
+  }
+ ]
+}

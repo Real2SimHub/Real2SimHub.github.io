@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhySimCode</title>
+<meta name="description" content="PhySimCode (Carnegie Mellon University, Amazon AGI) asks a model to infer the physics of a video and write code that regenerates it. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://real2simhub.github.io/blog/physimcode/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Real2SimHub">
+<meta property="og:title" content="PhySimCode: A Benchmark and Evaluation Method for Physics Video to Code Generation">
+<meta property="og:description" content="PhySimCode (Carnegie Mellon University, Amazon AGI) asks a model to infer the physics of a video and write code that regenerates it. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta property="og:url" content="https://real2simhub.github.io/blog/physimcode/">
+<meta property="og:image" content="https://real2simhub.github.io/assets/brand/png/real2simhub-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../../assets/brand/svg/real2simhub-favicon.svg">
+<link rel="alternate icon" href="../../assets/brand/real2simhub.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="../../assets/brand/png/real2simhub-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("r2sh-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../../" aria-label="Real2SimHub home"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-logo-small-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-logo-small.svg" alt="Real2SimHub" width="250" height="32"></picture></a>
+<nav class="series" aria-label="The Real2SimHub series"><a href="../../" aria-label="Real2SimHub"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-symbol.svg" alt="" width="26" height="22"></picture><span class="long">Real2SimHub</span><span class="short">Hub</span></a><a href="../../real2simlab/" aria-label="Real2SimLab"><picture><source data-dark srcset="../../assets/brand/svg/real2simlab-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simlab-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Real2SimLab</span><span class="short">Lab</span></a><a href="../../awesome-real2sim/" aria-label="Awesome-Real2Sim"><picture><source data-dark srcset="../../assets/brand/svg/awesome-real2sim-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/awesome-real2sim-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Awesome-Real2Sim</span><span class="short">Awesome</span></a></nav>
+<div class="header-right">
+<a class="org-link" href="https://github.com/Real2SimHub"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="org-name">Real2SimHub</span></a>
+<span class="divider" aria-hidden="true"></span>
+<button class="theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main">
+<article class="article" aria-labelledby="post-h">
+<div class="wrap narrow">
+<p class="crumb"><a href="../../blog/">Blog</a></p>
+<h1 id="post-h">PhySimCode: A Benchmark and Evaluation Method for Physics Video to Code Generation</h1>
+<ul class="facts">
+<li><b>Paper</b><span>PhySimCode: A Benchmark and Evaluation Method for Physics Video to Code Generation</span></li>
+<li><b>Authors</b><span>Souraja Kundu, Aditya Gupta, Joel Julin, Yizhou Zhao, Liuyue Xie, Laszlo A. Jeni</span></li>
+<li><b>From</b><span>Carnegie Mellon University, Amazon AGI</span></li>
+<li><b>arXiv</b><span><a href="https://arxiv.org/abs/2610.15722">arXiv:2610.15722</a> (cs.CV), October 2026</span></li>
+<li><b>Links</b><span><a href="https://huggingface.co/datasets/SourajaKundu123/PhySimCode">Evaluation set</a> · <a href="https://github.com/SourajaKundu/PhySimCode">Evaluation code</a></span></li>
+</ul>
+<p>Multimodal models understand videos and write code well. But describing a motion is not the same as finding the
+law behind it, estimating its parameters, or regenerating the scene from code. PhySimCode tests the whole chain:
+given only a video, a model must infer the physics, recover the parameter values and write runnable Python that
+reproduces the video.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/physimcode-domains.webp"><img src="../../assets/img/blog/physimcode-domains.webp" width="1800" height="1049" loading="lazy" alt="Figure 1 of the PhySimCode paper: a ring chart of 162 experiments in nine physical domains, from rigid body (21.6%) and spring or wave (17.9%) to gravitation or fluid (3.1%), surrounded by example scenes in 2D and 3D."></a>
+<figcaption><b>The phenomena.</b> 162 experiments in nine physical domains, with examples of 2D (SciPy) and 3D
+scenes. Figure 1 from Kundu, Gupta, Julin et al., <a href="https://arxiv.org/abs/2610.15722">PhySimCode</a>,
+reproduced with credit to the authors.</figcaption>
+</figure>
+<h2>The task</h2>
+<p>A model watches a rendered video and returns two things: a structured explanation in JSON (what it observes, the
+physical law, the parameters) and a Python program that simulates the process. To test physics rather than
+familiarity with an engine, it is told which engine was used and gets a code template that does not depend on the
+experiment.</p>
+<h2>The data</h2>
+<p>160.6K samples are generated procedurally from 162 phenomena: analytic simulations in SciPy, and rigid-body,
+articulated, fluid and contact-rich scenes rendered with PyBullet. Experts chose 69 phenomena themselves and 93 more
+from candidates proposed by language models. Each sample bundles the program that made it, its sampled parameters,
+the rendered video and a reference explanation covering observations, laws, equations, numerical method and checks.
+The released evaluation set has 2,430 videos.</p>
+<h2>How it is scored</h2>
+<p>Four axes. Physical laws are rated on a 1–5 scale by three language-model judges, twice: whether the stated law is
+correct at all, and whether it matches the reference. The regenerated video is compared with the input by human
+raters and by patch-wise similarity (DINOv2, VideoCLIP). The code is checked for running and for similarity to the
+reference. For parameters, predicted names are matched to the true ones, units are normalised, and a parameter counts
+when it is named and within ±20% of the true value.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/physimcode-renders.webp"><img src="../../assets/img/blog/physimcode-renders.webp" width="1800" height="1951" loading="lazy" alt="A grid of frames: five reference 3D scenes on top, such as a domino chain and a billiard break, and below them the same scenes rendered from the programs of five closed-source models, often with missing, misplaced or differently coloured objects."></a>
+<figcaption><b>Regenerated videos.</b> The top row is the input video; each row below is the video rendered from one
+closed-source model's program. From the appendix of Kundu, Gupta, Julin et al.,
+<a href="https://arxiv.org/abs/2610.15722">PhySimCode</a>, reproduced with credit to the authors.</figcaption>
+</figure>
+<h2>What the paper found</h2>
+<p>Ten models are evaluated. They state physical laws well (4.27–4.93 out of 5) but infer them poorly from video
+(1.51–2.47). The best at parameters, Claude Sonnet 4.6, recovers only 7.7% of the true parameters within ±20%.
+Gemini 2.5 Pro is rated best by people for physical plausibility and equivalence, yet runs less of its code: its long
+reasoning uses up the output and cuts the program short. Patch-wise similarity is much more lenient than people: it
+follows appearance, while people notice any deviation in the physics.</p>
+<h2>Run it in Real2SimLab</h2>
+<p>Real2SimLab adapts the 2D (SciPy) phenomena. An agent watches the video and delivers PhySimCode's explanation
+(<code>cot.json</code>) and a self-contained program that writes the video. The Lab re-runs the frozen program offline,
+checks that it produces a readable video, and matches the reported parameters to the true ones as PhySimCode does.
+The headline is the share of true parameters recovered within 20%, pooled over tasks; a task with no delivery counts
+with none recovered. The judged metrics are not adapted yet. PhySimCode's evaluation code declares no license, so it is
+fetched from its authors at a pinned commit when tasks are scored, and never copied.</p>
+<div class="code"><pre>r2s env build r2s-physimcode r2s-agent-codex-physimcode
+r2s bench build physimcode --out tasks/psc
+r2s eval --tasks tasks/psc --method codex=codex:image=r2s-agent-codex-physimcode --out runs/psc</pre></div>
+<p>More in the <a href="https://real2simhub.github.io/Real2SimLab/benchmarks/physimcode/">documentation</a>.</p>
+
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="foot-top"><span>© 2026 PKU-VaLuE-Lab · Real2SimHub</span><nav aria-label="Projects"><a href="../../real2simlab/">Real2SimLab</a><a href="../../awesome-real2sim/">Awesome-Real2Sim</a><a href="https://github.com/Real2SimHub">GitHub</a><a href="https://github.com/Real2SimHub/Real2SimHub.github.io#credits">Credits</a></nav></div>
+</div>
+</footer>
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>

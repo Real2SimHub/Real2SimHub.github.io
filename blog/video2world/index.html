@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video2World</title>
+<meta name="description" content="Video2World (Aether AI, UC San Diego) asks coding agents to turn an embodied video into an interactive simulated world. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://real2simhub.github.io/blog/video2world/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Real2SimHub">
+<meta property="og:title" content="Video2World: Benchmarking Coding Agents for Interactive World Modeling from Embodied Videos">
+<meta property="og:description" content="Video2World (Aether AI, UC San Diego) asks coding agents to turn an embodied video into an interactive simulated world. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta property="og:url" content="https://real2simhub.github.io/blog/video2world/">
+<meta property="og:image" content="https://real2simhub.github.io/assets/brand/png/real2simhub-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../../assets/brand/svg/real2simhub-favicon.svg">
+<link rel="alternate icon" href="../../assets/brand/real2simhub.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="../../assets/brand/png/real2simhub-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("r2sh-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../../" aria-label="Real2SimHub home"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-logo-small-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-logo-small.svg" alt="Real2SimHub" width="250" height="32"></picture></a>
+<nav class="series" aria-label="The Real2SimHub series"><a href="../../" aria-label="Real2SimHub"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-symbol.svg" alt="" width="26" height="22"></picture><span class="long">Real2SimHub</span><span class="short">Hub</span></a><a href="../../real2simlab/" aria-label="Real2SimLab"><picture><source data-dark srcset="../../assets/brand/svg/real2simlab-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simlab-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Real2SimLab</span><span class="short">Lab</span></a><a href="../../awesome-real2sim/" aria-label="Awesome-Real2Sim"><picture><source data-dark srcset="../../assets/brand/svg/awesome-real2sim-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/awesome-real2sim-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Awesome-Real2Sim</span><span class="short">Awesome</span></a></nav>
+<div class="header-right">
+<a class="org-link" href="https://github.com/Real2SimHub"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="org-name">Real2SimHub</span></a>
+<span class="divider" aria-hidden="true"></span>
+<button class="theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main">
+<article class="article" aria-labelledby="post-h">
+<div class="wrap narrow">
+<p class="crumb"><a href="../../blog/">Blog</a></p>
+<h1 id="post-h">Video2World: Benchmarking Coding Agents for Interactive World Modeling from Embodied Videos</h1>
+<ul class="facts">
+<li><b>Paper</b><span>Video2World: Benchmarking Coding Agents for Interactive World Modeling from Embodied Videos</span></li>
+<li><b>Authors</b><span>Jinzhou Tang, Zijun Zhang, Jing Yang, Yuchen Yan, Kun Zhou, Lingjun Mao, Ruobing Han, Jinglin Cao, Wenpeng Xu, Lukun He, Minghao Fu, Fan Feng, Biwei Huang</span></li>
+<li><b>From</b><span>Aether AI, University of California, San Diego</span></li>
+<li><b>arXiv</b><span><a href="https://arxiv.org/abs/2610.04432">arXiv:2610.04432</a> (cs.CV), October 2026</span></li>
+<li><b>Links</b><span><a href="https://aetherlabsai.github.io/Video2World">Project page</a> · <a href="https://github.com/AetherLabsAI/Video2World">Code</a> · <a href="https://huggingface.co/datasets/AetherLabs-AI/Video2World">Data</a></span></li>
+</ul>
+<p>Interactive simulators built from real observations could scale up data for embodied AI, but today's real-to-sim
+pipelines still need much manual scene building and calibration. Video2World asks whether coding agents can do the
+whole job: watch an embodied video, build the simulated environment and the robot's behaviour, and refine both from
+execution feedback.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/video2world-teaser.webp"><img src="../../assets/img/blog/video2world-teaser.webp" width="1800" height="982" loading="lazy" alt="Figure 1 of the Video2World paper: the 222 tasks by kind (robot manipulation, human manipulation, simulated interaction, cross-embodiment), human, egocentric and robot videos, the coding agents evaluated, interactive worlds built in simulation, and the functionality, geometry and dynamics scores of nine models."></a>
+<figcaption><b>Video2World.</b> Real videos of people and robots, off-the-shelf coding agents, and the interactive
+worlds they build; the 222 tasks by kind, and the scores of the agents evaluated. Figure 1 from Tang, Zhang, Yang et
+al., <a href="https://arxiv.org/abs/2610.04432">Video2World</a>, licensed under
+<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</figcaption>
+</figure>
+<h2>The task</h2>
+<p>Each instance pairs a video with a target: a simulator, a robot embodiment and its control interface. In a
+sandbox with the video, the simulator's APIs, documentation, assets and coding tools, the agent submits a program:
+the environment and the robot's behaviour. The evaluator then runs it, and after the scene is set up every change to
+an object must come from the simulator's dynamics, not from setting its state.</p>
+<h2>The data</h2>
+<p>222 instances in 39 task families, from 189 clips of robot executions, egocentric human recordings and third-person
+human demonstrations. They come from FurnitureBench, DROID, RoboDojo, HOI4D, HOT3D, DexYCB, OakInk2 and an in-house
+household dataset. Every video has object-centric annotations of the scene's geometry, the objects' motion and the
+task: its objects' roles, essential events, goal and milestones. For each target robot, a reference behaviour derived
+from the annotations is executed under contact physics to check that the task can be reproduced.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/video2world-overview.webp"><img src="../../assets/img/blog/video2world-overview.webp" width="1800" height="891" loading="lazy" alt="Figure 2 of the Video2World paper: the pipeline from an RGB video to a coding agent, its output scene and robot actions and execution feedback; a build check; a human-assisted reference; and object-centric evaluation of geometry, dynamics and functionality."></a>
+<figcaption><b>Overview.</b> A coding agent builds the scene and the robot's behaviour from the video, simulator APIs,
+assets and execution feedback. Submissions that build are evaluated against hidden scene geometry, the demonstrated
+object motion and the task's requirements. Figure 2 from Tang, Zhang, Yang et al.,
+<a href="https://arxiv.org/abs/2610.04432">Video2World</a>, licensed under
+<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</figcaption>
+</figure>
+<h2>How it is scored</h2>
+<p>Build Rate says whether a submission runs. Geometric fidelity compares the reconstructed scene and objects with the
+annotations (scene and shape Chamfer distance, size, position, relative pose). Dynamic fidelity compares the objects'
+motion with the demonstration (translation and rotation errors). Functional correctness asks whether the task is done
+(Task Success) and how far it got (Task Progress, by milestones). V2WScore combines them into one score from 0 to 100,
+averaged over task families: a package that does not build scores 0.</p>
+<h2>What the paper found</h2>
+<p>The authors evaluate 9 coding-agent systems, one attempt per instance. Most reconstructions build, but Task
+Progress consistently exceeds Task Success: agents often carry out part of an interaction without finishing it. Task
+Success rises sharply from Claude Opus 5 on, from below 5% to over 15%. Worlds that look better can work worse:
+GPT-6 Astra leads in object shape and size, while Fable-5.1 does better on the scene and the task. A human-assisted
+reference leads every automatic metric and is preferred by human raters, yet does not complete every task either.</p>
+<h2>Run it in Real2SimLab</h2>
+<p>The ground truth and the reference packages never reach the agent, and the agent reaches only the model API.</p>
+<div class="code"><pre>r2s env build r2s-video2world r2s-agent-codex-video2world
+r2s bench build video2world --out tasks/v2w
+r2s eval --tasks tasks/v2w --method codex=codex:image=r2s-agent-codex-video2world --out runs/v2w</pre></div>
+<p>More in the <a href="https://real2simhub.github.io/Real2SimLab/benchmarks/video2world/">documentation</a>.</p>
+
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="foot-top"><span>© 2026 PKU-VaLuE-Lab · Real2SimHub</span><nav aria-label="Projects"><a href="../../real2simlab/">Real2SimLab</a><a href="../../awesome-real2sim/">Awesome-Real2Sim</a><a href="https://github.com/Real2SimHub">GitHub</a><a href="https://github.com/Real2SimHub/Real2SimHub.github.io#credits">Credits</a></nav></div>
+</div>
+</footer>
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>

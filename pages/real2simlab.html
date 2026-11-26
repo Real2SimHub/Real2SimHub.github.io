@@ -1,0 +1,89 @@
+<section class="hero wide" aria-labelledby="page-h">
+<div class="wrap">
+<div>
+<h1 id="page-h">{{logo:real2simlab}}</h1>
+<p class="subtitle">A Unified Platform for <span class="nowrap">Real-to-Simulation Transfer</span></p>
+<ul class="points">
+<li><span class="ico">{{icon:hub}}</span><div><b>Unified platform</b><span>47 coding agents, your own pipelines and hand-written programs, on six benchmarks.</span></div></li>
+<li><span class="ico">{{icon:scale}}</span><div><b>Fair comparison</b><span>The same sandbox for every method, a frozen program, and an offline re-run without the hidden data.</span></div></li>
+<li><span class="ico">{{icon:terminal}}</span><div><b>One command</b><span><code>r2s run example.toml</code> gives one scorecard.</span></div></li>
+</ul>
+<div class="buttons">
+{{arxiv_button}}
+<a class="btn" href="{{link:real2simlab_code}}">{{icon:github}}Code</a>
+<a class="btn" href="{{link:real2simlab_docs}}">{{icon:docs}}Docs</a>
+</div>
+</div>
+<figure class="hero-art">
+<img src="{{root}}assets/img/cards/real2simlab-hero.jpg" width="1665" height="554" alt="Real2SimLab in the middle, with visible data for the method and hidden data for the scorer only, and five steps: build, freeze, re-run, score, report, giving one record format and one scorecard. On the left, methods (Codex, Claude Code, Gemini CLI, your pipeline) deliver programs; on the right, benchmarks (Physics-IQ, Video2World, PhysCodeGym, IRIS) give tasks and scorers. Each connects once.">
+</figure>
+</div>
+</section>
+
+{{authors}}
+
+<section class="section" aria-labelledby="overview-h">
+<div class="wrap narrow">
+<h2 id="overview-h">Why a shared platform</h2>
+<p>Benchmarks differ in their inputs, deliverables and scorers, so <i>N</i> methods on <i>M</i> benchmarks take
+<i>N</i>&nbsp;×&nbsp;<i>M</i> integrations. With Real2SimLab, each connects once: <i>N</i>&nbsp;+&nbsp;<i>M</i>.</p>
+<figure class="fig scroll">
+<div class="fig-img"><img src="{{root}}assets/img/figures/integrations.webp" width="1750" height="514" loading="lazy" alt="Left, without a shared platform: four methods (Codex, Claude Code, Gemini CLI, your pipeline) and four benchmarks (Physics-IQ, Video2World, PhysCodeGym, IRIS) joined by a tangle of wires, each pair with its own adapter: N times M integrations. Right, with Real2SimLab: each method and each benchmark connects once to Real2SimLab, which keeps visible data for the method and hidden data for the scorer, and builds, freezes, re-runs, scores and reports: N plus M integrations."></div>
+<p class="scroll-hint">Scroll sideways to see the whole figure.</p>
+<figcaption>Without a shared platform (left) and with Real2SimLab (right).</figcaption>
+</figure>
+
+<h2>A fair comparison, in five steps</h2>
+<ol class="steps">
+<li><b>Build</b>A method writes its program in a sandbox.</li>
+<li><b>Freeze</b>The program is copied and fingerprinted.</li>
+<li><b>Re-run</b>It runs again offline, without the hidden data.</li>
+<li><b>Score</b>The benchmark's own scorer, or the reproduction skill for raw datasets.</li>
+<li><b>Report</b>One scorecard for every benchmark.</li>
+</ol>
+<p>A failure of the machine is redone, never counted as a score.</p>
+<figure class="fig scroll">
+<div class="fig-img"><img src="{{root}}assets/img/figures/architecture.webp" width="1750" height="848" loading="lazy" alt="Architecture of Real2SimLab. Left: any method, such as coding agents, real-to-simulation pipelines, hand-written programs, learned methods and reference baselines, through a method adapter. Right: any benchmark, Physics-IQ, Video2World, 4DCodeBench, PhysCodeGym, PhySimCode, IRIS, Synthetic and your recordings, through a benchmark adapter. Center: one task format with visible and hidden parts; build, freeze, re-run, score and report; sandboxed build and frozen re-run; delivery conventions; scoring protocols; training; one record format and one scorecard."></div>
+<p class="scroll-hint">Scroll sideways to see the whole figure.</p>
+<figcaption>Methods (left) and benchmarks (right) connect through adapters.</figcaption>
+</figure>
+
+<h2>Recordings and re-runs</h2>
+<figure class="fig">
+<div class="fig-img"><img src="{{root}}assets/img/figures/teaser.webp" width="1750" height="617" loading="lazy" alt="Five benchmarks, Physics-IQ, PhysCodeGym, PhySimCode, IRIS and Synthetic. Top row: the recording a method sees, real for Physics-IQ, PhysCodeGym and IRIS, a reference for PhySimCode and Synthetic. Middle: Real2SimLab builds, freezes, re-runs, scores and reports. Bottom row: the re-run of each program, as frames or as height-over-time plots of the tracked ball."></div>
+<figcaption>Top: what a method sees (for PhySimCode and Synthetic, a simulated reference). Bottom: the re-run of a program written by Codex.</figcaption>
+</figure>
+
+<h2>Six benchmarks, many coding agents</h2>
+<p>Each benchmark keeps its own tasks and scorer. Every method, from coding agents to your own pipeline, runs on all
+of them in the same way.</p>
+<figure class="fig scroll">
+<div class="fig-img"><img src="{{root}}assets/img/figures/benchmarks.webp" width="1750" height="776" loading="lazy" alt="Cards for the six benchmarks and our synthetic suite, each with what a method sees, what it delivers and how it is scored: Physics-IQ, Video2World, 4DCodeBench (shown as a drawing), PhysCodeGym, PhySimCode, IRIS and Synthetic, and a card for your own recordings."></div>
+<p class="scroll-hint">Scroll sideways to see the whole figure.</p>
+<figcaption>4DCodeBench declares no license, so its card shows a drawing.</figcaption>
+</figure>
+
+<h2>Training data from the same tasks</h2>
+<p>Real2SimLab provides training tasks, datasets that leave out every recording of an evaluation task, and rewards
+computed by the evaluation's own code. It ships no trainer and no weights.</p>
+<figure class="fig scroll">
+<div class="fig-img"><img src="{{root}}assets/img/figures/training.webp" width="1750" height="431" loading="lazy" alt="Five stages: training tasks from recordings, generated scenes or splits; an overlap check that compares frames and leaves out a training clip showing the same recording as an evaluation task; a dataset of tasks and runs; training by a user's own method, offline or online with the reward; and evaluation of the checkpoint on held-out tasks only."></div>
+<p class="scroll-hint">Scroll sideways to see the whole figure.</p>
+<figcaption>An overlap check keeps evaluation recordings out of training.</figcaption>
+</figure>
+</div>
+</section>
+
+<section class="section" aria-labelledby="start-h">
+<div class="wrap narrow">
+<h2 id="start-h">Get started</h2>
+<div class="code has-copy"><pre id="start-code" tabindex="0" aria-label="Commands to get started" data-text="git clone {{link:real2simlab_code}}.git &amp;&amp; cd Real2SimLab
+pip install -e .
+r2s demo --open">git clone {{link:real2simlab_code}}.git &amp;&amp; cd Real2SimLab
+pip install -e .        <span class="c"># Python 3.11+ and ffmpeg</span>
+r2s demo --open         <span class="c"># about 30 s on a CPU</span></pre><button class="copy" type="button" data-copy="start-code" aria-label="Copy the commands">{{icon:copy}}<span>Copy</span></button></div>
+<p>Next: <a href="{{link:real2simlab_code}}">Real2SimLab on GitHub</a>.</p>
+</div>
+</section>
+
+{{bibtex}}

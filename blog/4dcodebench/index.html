@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4DCodeBench</title>
+<meta name="description" content="4DCodeBench (Johns Hopkins, Stanford, MPI-IS, MIT) asks agents to rebuild a video of a dynamic scene as an executable 4D graphics program. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://real2simhub.github.io/blog/4dcodebench/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Real2SimHub">
+<meta property="og:title" content="4DCodeBench: Benchmarking Agents on Inverse Graphics of Dynamic Scenes">
+<meta property="og:description" content="4DCodeBench (Johns Hopkins, Stanford, MPI-IS, MIT) asks agents to rebuild a video of a dynamic scene as an executable 4D graphics program. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta property="og:url" content="https://real2simhub.github.io/blog/4dcodebench/">
+<meta property="og:image" content="https://real2simhub.github.io/assets/brand/png/real2simhub-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../../assets/brand/svg/real2simhub-favicon.svg">
+<link rel="alternate icon" href="../../assets/brand/real2simhub.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="../../assets/brand/png/real2simhub-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("r2sh-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../../" aria-label="Real2SimHub home"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-logo-small-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-logo-small.svg" alt="Real2SimHub" width="250" height="32"></picture></a>
+<nav class="series" aria-label="The Real2SimHub series"><a href="../../" aria-label="Real2SimHub"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-symbol.svg" alt="" width="26" height="22"></picture><span class="long">Real2SimHub</span><span class="short">Hub</span></a><a href="../../real2simlab/" aria-label="Real2SimLab"><picture><source data-dark srcset="../../assets/brand/svg/real2simlab-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simlab-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Real2SimLab</span><span class="short">Lab</span></a><a href="../../awesome-real2sim/" aria-label="Awesome-Real2Sim"><picture><source data-dark srcset="../../assets/brand/svg/awesome-real2sim-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/awesome-real2sim-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Awesome-Real2Sim</span><span class="short">Awesome</span></a></nav>
+<div class="header-right">
+<a class="org-link" href="https://github.com/Real2SimHub"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="org-name">Real2SimHub</span></a>
+<span class="divider" aria-hidden="true"></span>
+<button class="theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main">
+<article class="article" aria-labelledby="post-h">
+<div class="wrap narrow">
+<p class="crumb"><a href="../../blog/">Blog</a></p>
+<h1 id="post-h">4DCodeBench: Benchmarking Agents on Inverse Graphics of Dynamic Scenes</h1>
+<ul class="facts">
+<li><b>Paper</b><span>4DCodeBench: Benchmarking Agents on Inverse Graphics of Dynamic Scenes</span></li>
+<li><b>Authors</b><span>Ruihong Shen, Žiga Kovačič, Peter Kulits, Xingrui Wang, Zizhang Li, Joshua B. Tenenbaum, Alan Yuille, Jieneng Chen, Jiajun Wu</span></li>
+<li><b>From</b><span>Johns Hopkins University, Stanford University, Max Planck Institute for Intelligent Systems, Massachusetts Institute of Technology</span></li>
+<li><b>arXiv</b><span><a href="https://arxiv.org/abs/2610.03715">arXiv:2610.03715</a> (cs.CV), October 2026</span></li>
+<li><b>Links</b><span><a href="https://4dcodebench.com/">Project page</a> · <a href="https://github.com/4DCodeBench/4DCodeBench">Code</a></span></li>
+</ul>
+<p>Inverse graphics usually fits a fixed model to what a camera sees. 4DCodeBench asks for an executable graphics
+program instead, so the program itself decides what geometry to build and how to represent it. Dynamic scenes make
+these choices matter: flow, fracture and deformation change an object's shape and often its topology, and materials
+act on each other. The paper asks how well multimodal coding agents understand such dynamics from a video when they
+choose and implement their own abstractions.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/4dcodebench-teaser.webp"><img src="../../assets/img/blog/4dcodebench-teaser.webp" width="1800" height="1780" loading="lazy" alt="Figure 1 of the 4DCodeBench paper. Top: frames of a video of a pasta machine, an agent that writes graphics code, the 4D scene it builds, the video rendered from it and its geometry over time. Bottom: inputs and reconstructions by two models for an articulated, a liquid, a co-dimensional and a fracture scene."></a>
+<figcaption><b>The task and the benchmark.</b> Top: given an input video, an agent writes graphics code for an
+explicit 4D scene; the scene is rendered back to video and its geometry is inspected over time. Bottom: inputs and
+reconstructions on real (left) and synthetic (right) scenes. Figure 1 from Shen, Kovačič, Kulits et al.,
+<a href="https://arxiv.org/abs/2610.03715">4DCodeBench</a>, reproduced with credit to the authors.</figcaption>
+</figure>
+<h2>The task</h2>
+<p>Given a reference video, an agent writes code that builds the scene's 3D geometry and its evolution over time, and
+renders it in Blender at the video's resolution, frame count and frame rate. The code must run without the reference
+video. How the dynamics are made is left open: keyframed, or simulated with any tool, such as Taichi or Warp, so the
+agent's choices are themselves part of what is studied.</p>
+<h2>The data</h2>
+<p>There are 200 scenes: 100 real videos, curated from existing datasets and the web, and 100 synthetic scenes built
+with physics simulators. Real videos bring real appearance and complex dynamics but no 4D ground truth; synthetic
+scenes give the geometry and motion at every frame. Scenes are grouped by the matter of their main moving objects:
+rigid and articulated, deformable solids, co-dimensional (cloth, rope) and flowing (grains, fluids). 83% of the scenes
+have several moving objects and 66% several materials.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/4dcodebench-dataset.webp"><img src="../../assets/img/blog/4dcodebench-dataset.webp" width="1800" height="922" loading="lazy" alt="Figure 3 of the 4DCodeBench paper: a real and a synthetic example for rigid, deformable, co-dimensional and flowing matter, a bar chart of how many real and synthetic scenes contain each kind, and the shares of scenes with one or many objects, one or many materials, and passive or driven motion."></a>
+<figcaption><b>The scenes.</b> A real and a synthetic example for each kind of matter, how many scenes contain each,
+and how the scenes split by number of objects, number of materials, and passive or driven motion. Figure 3 from
+Shen, Kovačič, Kulits et al., <a href="https://arxiv.org/abs/2610.03715">4DCodeBench</a>, reproduced with credit to
+the authors.</figcaption>
+</figure>
+<h2>How it is scored</h2>
+<p>Five families of metrics, each from 0 to 1: Perceptual (DINOv3 similarity to the reference video), 2D Dynamics
+(the dynamic IoU of moving objects, and on real videos optical flow and point tracks), 2.5D Geometry (depth, on real
+videos), and on synthetic scenes 3D Geometry (Chamfer distance at the first frame) and 3D Dynamics (paths of matter
+over time, and frame-to-frame displacements). Overall is their mean; a failed run gets the worst score. A
+vision-language model also answers scene-specific questions about each reconstruction and compares pairs of them.</p>
+<h2>What the paper found</h2>
+<p>The authors evaluate 18 models on all 200 scenes. Across all of them, appearance and static geometry score
+higher on average than dynamics: even the strongest, GPT-6 Astra [Max], scores 0.91 on the static families and 0.67
+on the dynamic ones. The
+automated rankings agree with people: over 3,587 pairwise judgments from 76 participants, human and model-judge
+ratings correlate with Spearman ρ = 0.980. 90.1% of submissions run fully, more tokens do not consistently give
+better reconstructions, and leading models take different routes, from mostly analytic motion to custom physical
+simulations. The authors note that the scores reward fidelity, so prescribed trajectories can score well.</p>
+<h2>Run it in Real2SimLab</h2>
+<p>Real2SimLab fetches the code and the data at pinned versions and runs the official scorer unchanged, which reports
+the dynamic IoU. It can also re-run the frozen program offline first and score the world it builds again, a check the
+official protocol does not make.</p>
+<div class="code"><pre>r2s bench build fourdcodebench --out tasks/
+r2s eval --tasks tasks/synthetic --method codex:image=4dcb/agent:dev --out runs/4dcb</pre></div>
+<p>More in the <a href="https://real2simhub.github.io/Real2SimLab/benchmarks/fourdcodebench/">documentation</a>.</p>
+
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="foot-top"><span>© 2026 PKU-VaLuE-Lab · Real2SimHub</span><nav aria-label="Projects"><a href="../../real2simlab/">Real2SimLab</a><a href="../../awesome-real2sim/">Awesome-Real2Sim</a><a href="https://github.com/Real2SimHub">GitHub</a><a href="https://github.com/Real2SimHub/Real2SimHub.github.io#credits">Credits</a></nav></div>
+</div>
+</footer>
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>

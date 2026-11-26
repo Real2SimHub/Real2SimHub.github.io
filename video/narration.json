@@ -1,0 +1,28 @@
+{
+  "_comment": "The English narration of the video: each line starts speaking `at` seconds into its scene. Synthesised locally by video/narrate.py with Kokoro-82M (Apache-2.0); 'Real-to-Sim' spells the names as they are said.",
+  "model": "hexgrad/Kokoro-82M",
+  "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "voice": "af_heart",
+  "speed": 1.1,
+  "lines": [
+    {"id": "o1", "scene": "s01_open", "at": 1.4, "text": "Real-to-simulation builds simulations from real-world data."},
+    {"id": "o2", "scene": "s01_open", "at": 5.0, "text": "It has long been studied, in research and in industry."},
+    {"id": "o3", "scene": "s01_open", "at": 7.9, "text": "Real-to-Sim Hub."},
+    {"id": "o4", "scene": "s01_open", "at": 9.1, "text": "We invite you to build the infrastructure of real-to-simulation, together."},
+    {"id": "c1", "scene": "s02_contrib", "at": 0.6, "text": "Two open-source resources, easy to use: Real-to-Sim Lab, and Awesome Real-to-Sim."},
+    {"id": "h1", "scene": "s03_how", "at": 0.4, "text": "Recently, coding agents have begun to write simulation programs from recordings."},
+    {"id": "h2", "scene": "s03_how", "at": 5.2, "text": "And several benchmarks now evaluate them."},
+    {"id": "p1", "scene": "s05_platform", "at": 0.6, "text": "Without a unified platform, every pair of method and benchmark needs its own glue."},
+    {"id": "p2", "scene": "s05_platform", "at": 5.6, "text": "With Real-to-Sim Lab, many coding agents and many benchmarks are each connected once."},
+    {"id": "f1", "scene": "s06_fair", "at": 0.3, "text": "Fair comparison. Every method runs in the same sandbox."},
+    {"id": "f2", "scene": "s06_fair", "at": 3.8, "text": "Its program is frozen, and re-run offline, without the answers."},
+    {"id": "f3", "scene": "s06_fair", "at": 7.7, "text": "Each benchmark then scores it with its own scorer."},
+    {"id": "k1", "scene": "s07_command", "at": 0.4, "text": "One command. Write one experiment file, with any methods and any benchmarks."},
+    {"id": "k2", "scene": "s07_command", "at": 5.0, "text": "One file. One command. One scorecard."},
+    {"id": "a1", "scene": "s08_awesome", "at": 0.6, "text": "Awesome Real-to-Sim is a research map of nearly three hundred papers."},
+    {"id": "a2", "scene": "s08_awesome", "at": 4.85, "text": "Key works sit on a roadmap."},
+    {"id": "a3", "scene": "s08_awesome", "at": 6.5, "text": "Methods are sorted by what they deliver,"},
+    {"id": "a4", "scene": "s08_awesome", "at": 8.7, "text": "and benchmarks by what they ask for."},
+    {"id": "z1", "scene": "s09_close", "at": 0.9, "text": "More is coming. Join us at Real-to-Sim Hub."}
+  ]
+}

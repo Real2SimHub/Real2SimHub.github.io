@@ -1,0 +1,71 @@
+<section class="hero" aria-labelledby="page-h">
+<div class="wrap">
+<div>
+<h1 id="page-h">{{logo:awesome-real2sim}}</h1>
+<p class="subtitle">A research map of nearly 300 papers</p>
+<ul class="points">
+<li><span class="ico">{{icon:box}}</span><div><b>Sorted by what each paper delivers</b><span>Each paper has exactly one place.</span></div></li>
+<li><span class="ico">{{icon:tool}}</span><div><b>Tagged with how it is built</b><span>From optimization to language-model agents.</span></div></li>
+<li><span class="ico">{{icon:route}}</span><div><b>A roadmap</b><span>Key methods and benchmarks on one route, month by month.</span></div></li>
+<li><span class="ico">{{icon:plus}}</span><div><b>Open to contributions</b><span>Add a paper with one entry or one issue.</span></div></li>
+</ul>
+<div class="buttons">
+{{arxiv_button}}
+<a class="btn" href="{{link:awesome}}">{{icon:github}}GitHub</a>
+<a class="btn" href="{{link:awesome_list}}">{{icon:list}}Browse the list</a>
+</div>
+</div>
+<figure class="hero-art panel-art">
+<img src="{{root}}assets/img/cards/awesome-real2sim-panel.webp" width="1000" height="1162" alt="Awesome-Real2Sim at a glance, from Figure 1 of the Real2SimLab paper: a research map of nearly 300 real-to-simulation papers; methods by what they deliver (physical twin, simulation-ready asset, scene-level simulation, simulation program, learned simulator); benchmarks by what they ask for (a runnable simulation, answers, generated frames, sim vs. reality); and a timeline from 2013 to 2026.">
+</figure>
+</div>
+</section>
+
+{{authors}}
+
+<section class="section" aria-labelledby="map-h">
+<div class="wrap narrow">
+<h2 id="map-h">A map of a scattered field</h2>
+<p>Real-to-simulation papers come from vision, graphics and robotics, and they deliver very different things: physical
+twins, simulation-ready assets, whole scenes, programs and learned simulators. Awesome-Real2Sim puts their methods,
+benchmarks, datasets and surveys on one map.</p>
+</div>
+<div class="wrap">
+<figure class="fig scroll">
+<div class="fig-img themed">
+<picture>
+<source data-dark srcset="{{root}}assets/img/figures/awesome/overview-dark.svg" media="(prefers-color-scheme: dark)">
+<img src="{{root}}assets/img/figures/awesome/overview-light.svg" width="1280" height="370" loading="lazy" alt="Overview of Awesome-Real2Sim. Left, methods in six categories by what they deliver: physical twins with identified or assigned parameters, sim-ready assets, scene twins, simulation programs and learned simulators. Right, benchmarks in four categories by what is handed in (a runnable simulation, prediction and reasoning, generated video, sim-real agreement), datasets and surveys. In the middle, the list itself: methods, benchmarks, datasets, surveys and the map.">
+</picture>
+</div>
+<p class="scroll-hint">Scroll sideways to see the whole figure.</p>
+<figcaption>Methods by what they deliver (left); benchmarks, datasets and surveys (right).</figcaption>
+</figure>
+<figure class="fig scroll">
+<div class="fig-img">
+<img src="{{root}}assets/img/figures/awesome/roadmap.svg" width="1440" height="796" loading="lazy" alt="Roadmap of real-to-simulation, a route that winds through four rows of key works, each dated by month: Galileo, IntPhys, CLEVRER, LiDARsim, gradSim and RoboCraft; PAC-NeRF, UniSim, PhysGaussian, RialTo, SIMPLER and URDFormer; Cosmos, Physics-IQ, PhysTwin, Human2Sim2Robot, Real2Sim-Eval and URDF-Anything+; LagrangianSplats, Agentic Real2Sim, Real2Gym, 4DCodeBench, Video2World and PhysCodeGym. Benchmarks have a violet edge.">
+</div>
+<p class="scroll-hint">Scroll sideways to see the whole roadmap.</p>
+<figcaption>Key works, dated by the month of their first arXiv version (Galileo: its conference). Benchmarks have a violet edge.</figcaption>
+</figure>
+</div>
+<div class="wrap narrow">
+<h2>Sorted by what each paper delivers</h2>
+<p>Methods are sorted by what they deliver, benchmarks by what the system under test must hand in.</p>
+<figure class="fig scroll">
+<div class="fig-img themed">
+<picture>
+<source data-dark srcset="{{root}}assets/img/figures/awesome/taxonomy-dark.svg" media="(prefers-color-scheme: dark)">
+<img src="{{root}}assets/img/figures/awesome/taxonomy-light.svg" width="1120" height="879" loading="lazy" alt="Taxonomy. Six questions asked in order send a method to its category: adjacent directions, learned simulator, simulation program, scene twin, sim-ready asset, physical twin with identified parameters, or physical twin with assigned parameters. Below, benchmarks are sorted by what the system under test hands in: a runnable simulation, prediction and reasoning, generated video, or sim-real agreement; data without an evaluation protocol is a dataset.">
+</picture>
+</div>
+<p class="scroll-hint">Scroll sideways to see the whole figure.</p>
+<figcaption>A few questions, asked in order, give each paper its category.</figcaption>
+</figure>
+
+<h2>Contribute</h2>
+<p>Missing a paper? Add one entry or open an issue: see <a href="{{link:awesome_contributing}}">CONTRIBUTING</a>.</p>
+</div>
+</section>
+
+{{bibtex}}

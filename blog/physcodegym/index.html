@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhysCodeGym</title>
+<meta name="description" content="PhysCodeGym (Shanghai Jiao Tong University and others) asks coding agents to rebuild 156 videos as Blender programs and checks them physically. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://real2simhub.github.io/blog/physcodegym/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Real2SimHub">
+<meta property="og:title" content="PhysCodeGym: Benchmarking Coding Agents for Physically Verifiable 4D Reconstruction">
+<meta property="og:description" content="PhysCodeGym (Shanghai Jiao Tong University and others) asks coding agents to rebuild 156 videos as Blender programs and checks them physically. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta property="og:url" content="https://real2simhub.github.io/blog/physcodegym/">
+<meta property="og:image" content="https://real2simhub.github.io/assets/brand/png/real2simhub-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../../assets/brand/svg/real2simhub-favicon.svg">
+<link rel="alternate icon" href="../../assets/brand/real2simhub.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="../../assets/brand/png/real2simhub-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("r2sh-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../../" aria-label="Real2SimHub home"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-logo-small-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-logo-small.svg" alt="Real2SimHub" width="250" height="32"></picture></a>
+<nav class="series" aria-label="The Real2SimHub series"><a href="../../" aria-label="Real2SimHub"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-symbol.svg" alt="" width="26" height="22"></picture><span class="long">Real2SimHub</span><span class="short">Hub</span></a><a href="../../real2simlab/" aria-label="Real2SimLab"><picture><source data-dark srcset="../../assets/brand/svg/real2simlab-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simlab-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Real2SimLab</span><span class="short">Lab</span></a><a href="../../awesome-real2sim/" aria-label="Awesome-Real2Sim"><picture><source data-dark srcset="../../assets/brand/svg/awesome-real2sim-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/awesome-real2sim-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Awesome-Real2Sim</span><span class="short">Awesome</span></a></nav>
+<div class="header-right">
+<a class="org-link" href="https://github.com/Real2SimHub"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="org-name">Real2SimHub</span></a>
+<span class="divider" aria-hidden="true"></span>
+<button class="theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main">
+<article class="article" aria-labelledby="post-h">
+<div class="wrap narrow">
+<p class="crumb"><a href="../../blog/">Blog</a></p>
+<h1 id="post-h">PhysCodeGym: Benchmarking Coding Agents for Physically Verifiable 4D Reconstruction</h1>
+<ul class="facts">
+<li><b>Paper</b><span>PhysCodeGym: Benchmarking Coding Agents for Physically Verifiable 4D Reconstruction</span></li>
+<li><b>Authors</b><span>Shuai Shao, Jinchen He, Cunxin Fan, Zihan Guo, Shijian Wang, Qihan Ren, Kangning Zhang, Zunnan Xu, Haoyuan Li, Hao Wang, Jianghao Lin, Weiwen Liu, Weinan Zhang</span></li>
+<li><b>From</b><span>Shanghai Jiao Tong University, Sun Yat-sen University, Shanghai Innovation Institute, Southeast University, Nanyang Technological University, Carnegie Mellon University</span></li>
+<li><b>arXiv</b><span><a href="https://arxiv.org/abs/2610.17288">arXiv:2610.17288</a> (cs.AI), October 2026</span></li>
+<li><b>Links</b><span><a href="https://shaoshuai0605.github.io/PhysCodeGym-Project-Page/">Project page</a> · <a href="https://github.com/ShaoShuai0605/PhysCodeGym">Code</a></span></li>
+</ul>
+<p>To build a simulation from a video, a coding agent must turn what it sees into an executable model and refine it
+with tools. PhysCodeGym asks agents to do this in Blender: inspect a video, write and run a scene program, and revise
+it from the simulation's feedback. It then checks not only whether the result looks right, but whether its physics
+is right.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/physcodegym-teaser.webp"><img src="../../assets/img/blog/physcodegym-teaser.webp" width="1800" height="1114" loading="lazy" alt="Figure 1 of the PhysCodeGym paper: for a domino cascade, milk poured into a glass, cloth draping over a teapot and flags in the wind, reference frames above agent reconstructions, around the benchmark's name made of many video frames."></a>
+<figcaption><b>The benchmark.</b> 156 video-to-Blender tasks with rigid-body, liquid, deformable and wind-driven
+motion; each example shows reference frames above an agent's reconstruction. Figure 1 from Shao, He, Fan, Guo et al.,
+<a href="https://arxiv.org/abs/2610.17288">PhysCodeGym</a>
+(<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>).</figcaption>
+</figure>
+<h2>The task</h2>
+<p>An agent reconstructs the physical process in a video as a Blender scene program and submits it. It works in a
+terminal: it watches the video, writes the program, runs the simulation, compares previews and revises. In the paper,
+each task has a budget of 3 hours and at most 20 Blender launches, and runs on Harbor.</p>
+<h2>The data</h2>
+<p>156 clips of 8 seconds (3840 × 2160, 30 fps), from Pexels, Physics-IQ, BAAI-DataCube's physics-aware videos and
+IRIS. Every clip shows a visible physical cause, such as falling, rolling, collision, pouring or wind, that Blender can
+simulate; combustion, cutting, fracture or magnetism are left out. Each task is annotated with an object checklist,
+events with timestamps, and rubrics for the physical requirements. Selected tasks also have counterfactual checks.</p>
+<h2>How it is scored</h2>
+<p>Six metrics. Three are visual: SSIM, perceptual similarity (from LPIPS) and object accuracy, judged by a
+vision-language model against the checklist. Three are physical. The event score is judged item by item by a
+vision-language model; it is zero if a key event fails. The motion score compares where and how long things move,
+with Physics-IQ's motion masks. Physical validity is checked by an agent that inspects the program and the Blender
+scene and takes measurements against the rubrics. For selected tasks it also changes forces, contacts or the starting
+state and simulates the scene again.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/physcodegym-pipeline.webp"><img src="../../assets/img/blog/physcodegym-pipeline.webp" width="1800" height="988" loading="lazy" alt="Figure 2 of the PhysCodeGym paper: stage 1, the task input; stage 2, a coding agent that writes scene.py, runs it and compares the simulated video with the reference; stage 3, independent verification with judges, rule-based metrics and a counterfactual test that turns ball contacts or a launch field off."></a>
+<figcaption><b>Reconstruction and verification.</b> A reference video defines the task (stage 1); a coding agent
+iterates and submits a scene program (stage 2); independent evaluation combines judgments, image and motion metrics,
+scene inspection and re-simulation under interventions (stage 3). Figure 2 from Shao, He, Fan, Guo et al.,
+<a href="https://arxiv.org/abs/2610.17288">PhysCodeGym</a>
+(<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>).</figcaption>
+</figure>
+<h2>What the paper found</h2>
+<p>The authors compare nine configurations: models working in Codex, Claude Code or Kimi Code. GPT-6-Astra leads
+overall (0.663), and on visual (0.693) and physical scores (0.633); GPT-5.6-Sol is second overall (0.570) at under a
+third of the cost per task. Every configuration scores higher on objects than on events, and motion stays weak: the
+best reaches 0.324. More tokens do not mean better scenes. With limited budgets, low reasoning effort scored best
+overall because it finished more tasks. The same model scored higher in Codex than in Claude Code, and its traces
+showed more checking and re-running. Above all, scenes that pass every object and event check can still be
+physically wrong, with energy appearing from nowhere or objects passing through each other. Counterfactual tests
+reveal more such failures.</p>
+<h2>Run it in Real2SimLab</h2>
+<p>Real2SimLab runs PhysCodeGym's model-free metrics with its own code at a pinned commit: SSIM, the motion score (the
+headline) and, when installed, LPIPS. It scores two variants. One is the frames the agent rendered in its session, as
+PhysCodeGym does. The other is the frames of the Lab's frozen, offline re-run of the submitted program, which checks
+that the program reproduces its own submission. The judged metrics are not adapted yet. The videos keep their own
+licenses and are downloaded, never redistributed.</p>
+<div class="code"><pre>r2s env build r2s-blender-4.0
+r2s bench build physcodegym --out tasks/pcg --select physics_iq_0001_ball_and_block_fall \
+  --option variants=rerun
+r2s eval --tasks tasks/pcg --method hand=program:path=examples/twins/physcodegym --out runs/pcg</pre></div>
+<p>An agent (<code>--method codex</code>, …) is evaluated on both variants: build the tasks without
+<code>--option</code>. More in the <a href="https://real2simhub.github.io/Real2SimLab/benchmarks/physcodegym/">documentation</a>.</p>
+
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="foot-top"><span>© 2026 PKU-VaLuE-Lab · Real2SimHub</span><nav aria-label="Projects"><a href="../../real2simlab/">Real2SimLab</a><a href="../../awesome-real2sim/">Awesome-Real2Sim</a><a href="https://github.com/Real2SimHub">GitHub</a><a href="https://github.com/Real2SimHub/Real2SimHub.github.io#credits">Credits</a></nav></div>
+</div>
+</footer>
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "_comment": "The background music, downloaded by `python3 video/make_video.py fetch` into R2S_COMMONS and edited to the video on its beat grid (126.66 bpm, a bar is 1.89484 s): `edit` lists where each piece starts in the video (`at`) and in the track (`from`), its gain in dB, and optionally the length of the cross-fade into it (`fade`, s; 12 ms by default); `end_fade` fades the music out over the last seconds of the video. The owner (2026-11-25) wants none of the heavy electronic bass of the track's second half (124-184 s and its last bars, nearly all of their energy below 90 Hz) anywhere in the video, so only the track's first half and its breakdown are used. The music starts on a beat 14 beats before the track's first drop (63.155 s), raised 3 dB so the build-up is as present as the rest, and the drop lands on the logo (6.63 s). It runs on to 40.74 s, then crosses over one beat into the track's light breakdown (from 104.84 s, 6 dB up). At 57.79 s, as Awesome-Real2Sim comes on, it crosses into the first half's statement of the melody the owner likes (83.998 s; the second half repeats it over the heavy bass) and plays on to the end of that section, fading out with the picture. Credited in the README (Credits).",
+  "title": "Supernova",
+  "artist": "Scott Buckley",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "credit": "'Supernova' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+  "page": "https://www.scottbuckley.com.au/library/supernova/",
+  "url": "https://www.scottbuckley.com.au/wp-content/audio/sb_supernova.mp3",
+  "sha256": "9bb8aa0f0896d900c8ca39f6a2c3d609986728d776a86e0f2e9502e10f7fa834",
+  "file": "music_supernova.mp3",
+  "_calm": "The owner (2026-11-25): from the line about the two open-source resources (c1) until the methods and benchmarks are named (a4), less rock and smaller swings, the melody kept. Over that span (with `fade` seconds of ramp outside each end) the drums are lowered by `drums_db` (the music's percussive part, separated from its tonal part, so the melody stays), the bass below 200 Hz by `bass_db` (ducking under the voice takes more from the highs than from the bass, which otherwise leaves the music boomy under the words), and between lines the music comes back only to `between_lines_db` instead of full level. The opening and the ending are unchanged.",
+  "calm": {"from": "c1", "to": "a4", "fade": 0.6, "drums_db": -6.0, "between_lines_db": -6.0, "bass_db": -8.0},
+  "end_fade": 0.98,
+  "edit": [
+    {"at": 0.0, "from": 56.523, "gain": 3.0},
+    {"at": 6.632, "from": 63.155, "gain": 0.0},
+    {"at": 40.7391, "from": 104.8414, "gain": 6.0, "fade": 0.4737},
+    {"at": 57.7926, "from": 83.9982, "gain": 0.0, "fade": 0.4737}
+  ]
+}

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics-IQ</title>
+<meta name="description" content="Physics-IQ (Google DeepMind) films 66 physical events twice from three views and asks a model to predict how each continues. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://real2simhub.github.io/blog/physics-iq/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Real2SimHub">
+<meta property="og:title" content="Physics-IQ: Do Generative Video Models Understand Physical Principles?">
+<meta property="og:description" content="Physics-IQ (Google DeepMind) films 66 physical events twice from three views and asks a model to predict how each continues. What it measures, what it found, and how to run it in Real2SimLab.">
+<meta property="og:url" content="https://real2simhub.github.io/blog/physics-iq/">
+<meta property="og:image" content="https://real2simhub.github.io/assets/brand/png/real2simhub-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../../assets/brand/svg/real2simhub-favicon.svg">
+<link rel="alternate icon" href="../../assets/brand/real2simhub.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="../../assets/brand/png/real2simhub-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("r2sh-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../../" aria-label="Real2SimHub home"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-logo-small-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-logo-small.svg" alt="Real2SimHub" width="250" height="32"></picture></a>
+<nav class="series" aria-label="The Real2SimHub series"><a href="../../" aria-label="Real2SimHub"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-symbol.svg" alt="" width="26" height="22"></picture><span class="long">Real2SimHub</span><span class="short">Hub</span></a><a href="../../real2simlab/" aria-label="Real2SimLab"><picture><source data-dark srcset="../../assets/brand/svg/real2simlab-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simlab-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Real2SimLab</span><span class="short">Lab</span></a><a href="../../awesome-real2sim/" aria-label="Awesome-Real2Sim"><picture><source data-dark srcset="../../assets/brand/svg/awesome-real2sim-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/awesome-real2sim-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Awesome-Real2Sim</span><span class="short">Awesome</span></a></nav>
+<div class="header-right">
+<a class="org-link" href="https://github.com/Real2SimHub"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="org-name">Real2SimHub</span></a>
+<span class="divider" aria-hidden="true"></span>
+<button class="theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main">
+<article class="article" aria-labelledby="post-h">
+<div class="wrap narrow">
+<p class="crumb"><a href="../../blog/">Blog</a></p>
+<h1 id="post-h">Physics-IQ: Do Generative Video Models Understand Physical Principles?</h1>
+<ul class="facts">
+<li><b>Paper</b><span>Do generative video models understand physical principles?</span></li>
+<li><b>Authors</b><span>Saman Motamed, Laura Culp, Kevin Swersky, Priyank Jaini, Robert Geirhos</span></li>
+<li><b>From</b><span>Google DeepMind; INSAIT, Sofia University</span></li>
+<li><b>arXiv</b><span><a href="https://arxiv.org/abs/2501.09038">arXiv:2501.09038</a> (cs.CV), January 2025</span></li>
+<li><b>Links</b><span><a href="https://physics-iq.github.io/">Project page</a> · <a href="https://github.com/google-deepmind/physics-IQ-benchmark">Code and data</a></span></li>
+</ul>
+<p>Video models now make realistic videos. Do they learn the laws of physics along the way, or do they only predict
+pixels that look right? Physics-IQ tests this with real videos that can only be continued correctly by a model that
+understands the physics in them: solid mechanics, fluid dynamics, optics, thermodynamics and magnetism.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/physics-iq-scenarios.webp"><img src="../../assets/img/blog/physics-iq-scenarios.webp" width="1800" height="1856" loading="lazy" alt="A grid of 66 photos of tabletop set-ups: dominoes, a rubber duck, kettlebells, glasses of coloured liquid, a Newton's cradle, balls on ramps, candles, a teapot and others."></a>
+<figcaption><b>The scenarios.</b> The switch frame of each of the 66 scenarios, center view: the last frame a model
+sees before it predicts the next 5 seconds. Figure 9 from Motamed, Culp, Swersky et al.,
+<a href="https://arxiv.org/abs/2501.09038">Physics-IQ</a>; the frames are from the Physics-IQ dataset
+(<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>).</figcaption>
+</figure>
+<h2>The task</h2>
+<p>Each video is 8 seconds long. A model sees the first 3 seconds, or only their last frame (the switch frame) if it
+generates video from one image, and predicts the next 5 seconds. It may also get a short text that describes the
+scene without telling what happens next. The switch frame is chosen by hand for each scenario: in a chain of dominoes,
+it is the moment the first domino has tipped but not yet reached the second.</p>
+<h2>The data</h2>
+<p>There are 396 videos: 66 scenarios, each filmed from three views (left, center, right) and twice, at 3840 × 2160 and
+30 fps, with static cameras. The two takes are recorded in the same way, yet differ a little, through chaotic
+motion or small changes in friction. The paper calls this difference the <em>physical variance</em>: how closely two
+real recordings of the same event agree.</p>
+<h2>How it is scored</h2>
+<p>The prediction is compared with the real continuation through where things move. Four metrics: Spatial IoU (where
+motion happens), Spatiotemporal IoU (where and when), Weighted spatial IoU (where and how much) and MSE (how it
+happens, pixel by pixel). The Physics-IQ score combines them and is normalised so that the second real take scores
+100: the best a prediction can reach.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/physics-iq-protocol.webp"><img src="../../assets/img/blog/physics-iq-protocol.webp" width="1800" height="535" loading="lazy" alt="Figure 2 of the Physics-IQ paper: conditioning frames and the switch frame go to a video model; its 5 generated seconds are compared with the 5 real seconds through four metrics, MSE, Spatiotemporal IoU, Weighted spatial IoU and Spatial IoU."></a>
+<figcaption><b>The protocol.</b> A video model continues the conditioning frames for 5 seconds; four metrics compare
+its frames with the real ones. Figure 2 from Motamed, Culp, Swersky et al.,
+<a href="https://arxiv.org/abs/2501.09038">Physics-IQ</a>, reproduced with credit to the authors.</figcaption>
+</figure>
+<h2>What the paper found</h2>
+<p>The authors test eight models: Sora, Runway Gen 3, Pika 1.0, Lumiere, Stable Video Diffusion and VideoPoet, two of
+them both from one image and from several frames. All are far from the real takes: the best, VideoPoet from several
+frames, scores 29.5 out of 100. Models given several frames do better than the same models given one. Every model
+scores much higher on Spatial IoU than on the stricter metrics: they put motion in the right place more often than at
+the right time or in the right amount. Visual realism, measured by how often a multimodal model can tell a generated video from the real
+one, is unrelated to physical understanding. Some cases already work, such as paint smeared on glass or liquid poured
+on a rubber duck, while a ball falling into a crate or a knife cutting a tangerine fail.</p>
+<h2>Run it in Real2SimLab</h2>
+<p>In Real2SimLab the method writes a program rather than a video. An agent sees take 1's first 3 seconds and delivers
+<code>solution/run.py</code>, which renders the next 5 seconds (150 frames at 30 fps); the program may not contain
+video or image files. The Lab scores the video with Physics-IQ's own code at a pinned commit: its motion masks, its
+four metrics against take 1, and its score. It also scores two reference points: the last visible frame held still,
+and take 2. Read a score next to the still one: on a mostly still scene, frames where nothing moves count as matches,
+so a still video already scores 53.4 on <code>ball-and-block-fall</code> (center view).</p>
+<div class="code"><pre>r2s env build r2s-blender-4.0 r2s-agent-codex-blender
+r2s bench build physicsiq --out tasks/piq --select ball-and-block-fall
+r2s eval --tasks tasks/piq --method codex=codex:image=r2s-agent-codex-blender --out runs/piq</pre></div>
+<p>More in the <a href="https://real2simhub.github.io/Real2SimLab/benchmarks/physics-iq/">documentation</a>.</p>
+
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="foot-top"><span>© 2026 PKU-VaLuE-Lab · Real2SimHub</span><nav aria-label="Projects"><a href="../../real2simlab/">Real2SimLab</a><a href="../../awesome-real2sim/">Awesome-Real2Sim</a><a href="https://github.com/Real2SimHub">GitHub</a><a href="https://github.com/Real2SimHub/Real2SimHub.github.io#credits">Credits</a></nav></div>
+</div>
+</footer>
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>

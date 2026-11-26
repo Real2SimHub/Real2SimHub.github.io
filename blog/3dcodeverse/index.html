@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3DCodeVerse</title>
+<meta name="description" content="3DCodeVerse (University of Southern California and others) gives coding agents a dataset of executable 3D programs and a harness that checks and refines what they build. How it works and what the paper found.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://real2simhub.github.io/blog/3dcodeverse/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Real2SimHub">
+<meta property="og:title" content="3DCodeVerse: Exploring 3D Worlds as Code">
+<meta property="og:description" content="3DCodeVerse (University of Southern California and others) gives coding agents a dataset of executable 3D programs and a harness that checks and refines what they build. How it works and what the paper found.">
+<meta property="og:url" content="https://real2simhub.github.io/blog/3dcodeverse/">
+<meta property="og:image" content="https://real2simhub.github.io/assets/brand/png/real2simhub-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../../assets/brand/svg/real2simhub-favicon.svg">
+<link rel="alternate icon" href="../../assets/brand/real2simhub.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="../../assets/brand/png/real2simhub-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("r2sh-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../../" aria-label="Real2SimHub home"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-logo-small-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-logo-small.svg" alt="Real2SimHub" width="250" height="32"></picture></a>
+<nav class="series" aria-label="The Real2SimHub series"><a href="../../" aria-label="Real2SimHub"><picture><source data-dark srcset="../../assets/brand/svg/real2simhub-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simhub-symbol.svg" alt="" width="26" height="22"></picture><span class="long">Real2SimHub</span><span class="short">Hub</span></a><a href="../../real2simlab/" aria-label="Real2SimLab"><picture><source data-dark srcset="../../assets/brand/svg/real2simlab-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/real2simlab-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Real2SimLab</span><span class="short">Lab</span></a><a href="../../awesome-real2sim/" aria-label="Awesome-Real2Sim"><picture><source data-dark srcset="../../assets/brand/svg/awesome-real2sim-symbol-dark.svg" media="(prefers-color-scheme: dark)"><img src="../../assets/brand/svg/awesome-real2sim-symbol.svg" alt="" width="22" height="22"></picture><span class="long">Awesome-Real2Sim</span><span class="short">Awesome</span></a></nav>
+<div class="header-right">
+<a class="org-link" href="https://github.com/Real2SimHub"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="org-name">Real2SimHub</span></a>
+<span class="divider" aria-hidden="true"></span>
+<button class="theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main">
+<article class="article" aria-labelledby="post-h">
+<div class="wrap narrow">
+<p class="crumb"><a href="../../blog/">Blog</a></p>
+<h1 id="post-h">3DCodeVerse: Exploring 3D Worlds as Code</h1>
+<ul class="facts">
+<li><b>Paper</b><span>3DCodeVerse: Exploring 3D Worlds as Code</span></li>
+<li><b>Authors</b><span>Yipeng Gao, Ziyao Zeng, Jinfa Huang, Yijiang Li, Haolin Xiong, Wang Qin, Xinlei Yu, Youheng Yao, Jie Zhang, Kun-Yu Lin, Rong Liu, Yinyuan Zhao, Yajie Zhao, Meiqi Guo, Jiebo Luo, Lei Shu, Yunhao Ge, Xinyu Hu, Laurent Itti</span></li>
+<li><b>From</b><span>University of Southern California, Yale University, University of Rochester, University of California, San Diego, Columbia University, Nanyang Technological University, University of California, Santa Cruz, Google DeepMind, Philo Labs</span></li>
+<li><b>arXiv</b><span><a href="https://arxiv.org/abs/2610.22341">arXiv:2610.22341</a> (cs.CV), October 2026</span></li>
+<li><b>Links</b><span><a href="https://3dcodeverse.com">Project page</a> · <a href="https://github.com/gaoypeng/3dcodeverse">Code</a> · <a href="https://huggingface.co/datasets/ilabai/3dcodeverse">Dataset</a></span></li>
+</ul>
+<p>3D content can be written as a program: a Blender script, a CadQuery part, a Three.js scene or a shader that, when
+run, builds the geometry, the articulated motion, the scene or the effect. Such content can be edited and checked.
+3DCodeVerse builds the pieces coding agents need to do this at scale: a large dataset of executable 3D programs, a
+framework of agents that checks and refines what they build, and practical guidance from systematic experiments.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/3dcodeverse-teaser.webp"><img src="../../assets/img/blog/3dcodeverse-teaser.webp" width="1800" height="918" loading="lazy" alt="Figure 1 of the 3DCodeVerse paper: an input (a reference photo and a text prompt for a Kyoto temple garden), a Blender program, and the rendered 3D asset, surrounded by objects, articulated objects, scenes and graphics built by code."></a>
+<figcaption><b>3D worlds as code.</b> Every asset is built only by code, in Blender Python, Three.js, OpenGL and other
+environments: 3D objects, articulated objects, scenes and graphics. Figure 1 from Gao, Zeng, Huang, Li et al.,
+<a href="https://arxiv.org/abs/2610.22341">3DCodeVerse</a>
+(<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>).</figcaption>
+</figure>
+<h2>How it works</h2>
+<p><b>The dataset.</b> 3DCodeVerse-2M gathers standalone 3D programs from three kinds of source. Some are collected
+from public resources: Bioinspired3D, 3DCodeBench, Thingiverse, Shadertoy, CodePen animations and Three.js projects.
+Others are converted from other representations: DeepCAD sequences and Articraft geometry become CadQuery, with
+Articraft's URDF kept, and ProcTHOR scenes become Blender and Three.js. The rest are new programs written with the
+framework below. Each program comes with the files it needs to run, three descriptions (an instruction, a visual description
+and a construction procedure), its provenance and license, and its verification results.</p>
+<p><b>The framework.</b> A planner defines the target, and a directed graph of sub-agents writes and assembles the
+program. Every version is run and measured with tools: part inventories and bounding boxes, contact and collision
+checks across joint poses, support and render checks. A vision-language model judges the renders against a rubric,
+and a fix agent makes targeted edits from this feedback, round after round, with no human in the loop.</p>
+<figure class="fig full">
+<a class="fig-img" href="../../assets/img/blog/3dcodeverse-harness.webp"><img src="../../assets/img/blog/3dcodeverse-harness.webp" width="1800" height="935" loading="lazy" alt="Figure 3 of the 3DCodeVerse paper: a planner and sub-agents assemble a program; a loop builds, checks, renders and judges it, and a fix agent edits it from automatic feedback; a dragon sculpture improves from a score of 0.44 to 0.64 over three rounds."></a>
+<figcaption><b>The framework.</b> A planner and a graph of sub-agents write the program; execution checks, spatial
+measurements and rubric-based judgments give feedback for targeted fixes, round after round. Figure 3 from Gao, Zeng,
+Huang, Li et al., <a href="https://arxiv.org/abs/2610.22341">3DCodeVerse</a>
+(<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>).</figcaption>
+</figure>
+<h2>What the paper found</h2>
+<p>On 100 prompts for 3D objects, people prefer what a model builds in this framework over what the same model builds
+with its own coding tools in 69% to 89% of comparisons, and the judge's score rises by 11 to 25 points. Weaker models gain most:
+Gemini 3.8 Flash from 61 to 87, GPT-6 Luna from 64 to 86. Against Claude Design, with Claude Opus 5.5 in both, the
+framework is preferred in 90% of human comparisons (judge score 88 against 37). Articulated objects, scenes and graphics
+show the same pattern. Fine-tuning on the dataset makes open models write code that runs: Qwen3.5-9B goes from 0% to
+84.9% of programs executing on 3DCodeBench, and Qwen3.8-27B from 51.9% to 92.9%.</p>
+<h2>Where it fits</h2>
+<p>In real-to-simulation, a twin is a program. 3DCodeVerse is about writing the 3D part of such programs (geometry,
+articulated assets, scenes) so that they run and can be checked by tools. The paper also uses it to build articulated
+assets and scenes with explicit geometry and physical constraints for simulated robot tasks.</p>
+
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="foot-top"><span>© 2026 PKU-VaLuE-Lab · Real2SimHub</span><nav aria-label="Projects"><a href="../../real2simlab/">Real2SimLab</a><a href="../../awesome-real2sim/">Awesome-Real2Sim</a><a href="https://github.com/Real2SimHub">GitHub</a><a href="https://github.com/Real2SimHub/Real2SimHub.github.io#credits">Credits</a></nav></div>
+</div>
+</footer>
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>

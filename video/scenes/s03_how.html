@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Real, program, simulation</title>
+<link rel="stylesheet" href="common.css">
+<script src="../build/clips/clips.js"></script>
+<style>
+.col { position: absolute; top: 458px; }
+.cap { position: absolute; left: -40px; right: -40px; text-align: center; font-size: 46px; font-weight: 700; }
+#code { position: absolute; left: 646px; top: 402px; width: 630px; height: 410px; border-radius: 24px; background: #0a0f1f; box-shadow: 0 0 0 3px #3b4a7a, 0 24px 60px rgba(0,0,0,.5); padding: 34px 34px; }
+#code pre { margin: 0; font-family: "Noto Sans Mono", monospace; font-size: 44px; line-height: 1.5; color: #e2e8f0; white-space: pre; }
+#code .k { color: #93c5fd; } #code .s { color: #fdba74; } #code .n { color: #c4b5fd; }
+.caret { display: inline-block; width: 24px; height: 50px; background: #a5b4fc; vertical-align: -8px; }
+.arrow { position: absolute; top: 570px; width: 70px; height: 70px; }
+</style></head>
+<body><div class="stage">
+  <div class="beat" data-in="0.1" data-fx="down"><img class="lg" src="../../assets/brand/svg/real2simhub-logo-dark.svg" alt="Real2SimHub"><span class="sep"></span><span>What's Real2Sim?</span></div>
+  <div class="center say" style="top:176px" data-in="0.3">Coding agents now write simulation programs<br>from recordings.</div>
+
+  <div class="col" style="left:40px;width:520px" data-in="0.6">
+    <div class="frame real" style="position:relative;width:520px;height:293px"><img data-clip="pcg_real" data-at="0.6" data-from="1.3" alt=""></div>
+    <div class="cap" style="top:324px;color:#fdba74">Real</div>
+  </div>
+  <svg class="arrow" style="left:568px" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" data-in="1.3" data-fx="right"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+
+  <div id="code" data-in="1.4" data-fx="scale"><pre id="src"></pre></div>
+  <div class="cap" style="top:840px;left:646px;width:630px;right:auto;color:#c7d2fe" data-in="1.4">program (simplified)</div>
+
+  <svg class="arrow" style="left:1284px" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" data-in="4.0" data-fx="right"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <div class="col" style="left:1362px;width:520px" data-in="4.2" data-fx="left">
+    <div class="frame sim" style="position:relative;width:520px;height:293px"><img data-clip="pcg_sim" data-at="4.2" data-from="1.3" alt=""></div>
+    <div class="cap" style="top:324px;color:#93c5fd">simulation</div>
+  </div>
+</div>
+<script>
+window.DURATION = 8.2;
+// Simplified from the Blender program that the Codex agent wrote for this recording
+// (a rigid-body ball and block, released at 2.9 s, rendered for 240 frames).
+const LINES = [
+  ['<span class="n">ball</span> = sphere(<span class="s">0.034</span>)', 'ball = sphere(0.034)'],
+  ['<span class="n">ball</span>.bounce = <span class="s">0.16</span>', 'ball.bounce = 0.16'],
+  ['<span class="n">block</span> = box(<span class="s">"orange"</span>)', 'block = box("orange")'],
+  ['<span class="k">release</span>(at=<span class="s">2.9</span>)', 'release(at=2.9)'],
+  ['<span class="k">render</span>(frames=<span class="s">240</span>)', 'render(frames=240)'],
+];
+const src = document.getElementById("src");
+const T0 = 1.8, CPS = 30;
+window.scene = (t) => {
+  let left = Math.max(0, (t - T0) * CPS), out = [], typing = false;
+  for (const [html, plain] of LINES) {
+    if (left >= plain.length) { out.push(html); left -= plain.length + 3; continue; }
+    const n = Math.floor(left);
+    out.push(plain.slice(0, n).replace(/&/g, "&amp;").replace(/</g, "&lt;") + '<span class="caret"></span>');
+    typing = true;
+    break;
+  }
+  if (!typing && t > T0) out[out.length - 1] += (Math.floor(t * 2) % 2 === 0 ? '<span class="caret"></span>' : '');
+  src.innerHTML = out.join("\n");
+};
+</script>
+<script src="common.js"></script>
+</body></html>

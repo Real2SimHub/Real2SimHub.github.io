@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Unified platform</title>
+<link rel="stylesheet" href="common.css">
+<script src="../build/clips/clips.js"></script>
+<style>
+.colh { position: absolute; top: 146px; width: 450px; font-size: 44px; font-weight: 700; color: var(--muted); }
+.list { position: absolute; top: 216px; width: 450px; display: flex; flex-direction: column; gap: 14px; z-index: 2; }
+.it { height: 74px; display: flex; align-items: center; gap: 18px; padding: 0 22px; border-radius: 18px; background: #131c38; box-shadow: 0 0 0 2px #2a3866; font-size: 44px; font-weight: 700; white-space: nowrap; }
+.it img { width: 52px; height: 52px; border-radius: 12px; background: #fff; }
+#wires { position: absolute; inset: 0; z-index: 1; }
+#hub { position: absolute; left: 790px; top: 376px; width: 340px; height: 300px; border-radius: 34px; z-index: 3; padding: 3px;
+  background: linear-gradient(140deg, #2563eb, #7c3aed); box-shadow: 0 0 80px rgba(99, 102, 241, .55); }
+#hub > div { width: 100%; height: 100%; border-radius: 31px; background: #0f1630; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
+#hub img { width: 272px; height: auto; }
+.count { position: absolute; top: 160px; left: 560px; width: 800px; text-align: center; font-size: 70px; font-weight: 700; letter-spacing: -.01em; }
+.count small { font-size: 46px; font-weight: 700; color: var(--muted); margin-left: 10px; }
+</style></head>
+<body><div class="stage">
+  <div class="beat" data-in="0.1" data-fx="down"><img class="lg" src="../../assets/brand/svg/real2simlab-logo-dark.svg" alt="Real2SimLab"><span class="sep"></span><span class="num">1</span><span>Unified platform</span></div>
+  <div class="count" style="color:#fb923c" data-in="1.4" data-out="5.4">N × M<small>integrations</small></div>
+  <div class="count" data-in="6.6"><span class="grad-text">N + M</span><small>integrations</small></div>
+
+  <div class="colh" style="left:70px" data-in="0.3">methods</div>
+  <div class="colh" style="left:1400px;text-align:right" data-in="0.3">benchmarks</div>
+  <div class="list" id="ml" style="left:70px">
+    <div class="it"><img src="../assets/icons/codex.svg" alt="">Codex</div>
+    <div class="it"><img src="../assets/icons/claude-code.svg" alt="">Claude Code</div>
+    <div class="it"><img src="../assets/icons/gemini-cli.svg" alt="">Gemini CLI</div>
+    <div class="it"><img src="../assets/icons/opencode.svg" alt="">OpenCode</div>
+    <div class="it"><img src="../assets/icons/mini-swe-agent.svg" alt="">mini-SWE-agent</div>
+    <div class="it"><img src="../assets/icons/harbor.svg" alt="">Harbor agents</div>
+    <div class="it"><img src="../assets/icons/program.svg" alt="">your pipeline</div>
+  </div>
+  <div class="list" id="bl" style="left:1400px">
+    <div class="it"><img src="../assets/icons/physics-iq.svg" alt="">Physics-IQ</div>
+    <div class="it"><img src="../assets/icons/video2world.svg" alt="">Video2World</div>
+    <div class="it"><img src="../assets/icons/fourdcodebench.svg" alt="">4DCodeBench</div>
+    <div class="it"><img src="../assets/icons/physcodegym.svg" alt="">PhysCodeGym</div>
+    <div class="it"><img src="../assets/icons/physimcode.svg" alt="">PhySimCode</div>
+    <div class="it"><img src="../assets/icons/iris.svg" alt="">IRIS</div>
+    <div class="it"><img src="../assets/icons/synthetic.svg" alt="">Synthetic</div>
+  </div>
+  <svg id="wires" viewBox="0 0 1920 1080"><g id="mesh"></g><g id="star"></g></svg>
+  <div id="hub"><div><img src="../../assets/brand/svg/real2simlab-logo-stacked-dark.svg" alt="Real2SimLab"></div></div>
+
+  <div class="center say" style="top:900px" data-in="1.0" data-out="5.4">Without a unified platform, every pair needs its own glue.</div>
+  <div class="center say" style="top:900px" data-in="6.4">Many coding agents. Many benchmarks. Each connected once.</div>
+</div>
+<script>
+window.DURATION = 11.8;
+const ns = "http://www.w3.org/2000/svg";
+let mesh = [], star = [];
+function path(g, d, color, w) {
+  const p = document.createElementNS(ns, "path");
+  p.setAttribute("d", d); p.setAttribute("fill", "none"); p.setAttribute("stroke", color);
+  p.setAttribute("stroke-width", w); p.setAttribute("stroke-linecap", "round");
+  g.appendChild(p);
+  const len = p.getTotalLength();
+  p.style.strokeDasharray = len; p.style.strokeDashoffset = len;
+  return { p, len };
+}
+// Wires are laid out once fonts and layout are final (no requestAnimationFrame).
+window.setup = () => {
+  const L = [...document.querySelectorAll("#ml .it")].map((e) => e.getBoundingClientRect());
+  const R = [...document.querySelectorAll("#bl .it")].map((e) => e.getBoundingClientRect());
+  const H = document.getElementById("hub").getBoundingClientRect();
+  const hy = H.top + H.height / 2;
+  const gm = document.getElementById("mesh"), gs = document.getElementById("star");
+  L.forEach((a, i) => R.forEach((b, j) => {
+    const x1 = a.right + 4, y1 = a.top + a.height / 2, x2 = b.left - 4, y2 = b.top + b.height / 2;
+    mesh.push({ ...path(gm, `M${x1} ${y1} C${x1 + 330} ${y1} ${x2 - 330} ${y2} ${x2} ${y2}`, "#fb923c", 3), k: i * 7 + j });
+  }));
+  L.forEach((a, i) => { const y = a.top + a.height / 2; star.push({ ...path(gs, `M${a.right + 4} ${y} C${a.right + 150} ${y} ${H.left - 120} ${hy} ${H.left} ${hy}`, "#60a5fa", 5), k: i }); });
+  R.forEach((b, j) => { const y = b.top + b.height / 2; star.push({ ...path(gs, `M${H.right} ${hy} C${H.right + 120} ${hy} ${b.left - 150} ${y} ${b.left - 4} ${y}`, "#a78bfa", 5), k: 7 + j }); });
+};
+window.scene = (t) => {
+  // Items slide in.
+  document.querySelectorAll("#ml .it").forEach((e, i) => { const k = ease.out(ramp(t, 0.3 + i * 0.07, 0.8 + i * 0.07)); e.style.opacity = k; e.style.transform = `translateX(${(1 - k) * -40}px)`; });
+  document.querySelectorAll("#bl .it").forEach((e, i) => { const k = ease.out(ramp(t, 0.3 + i * 0.07, 0.8 + i * 0.07)); e.style.opacity = k; e.style.transform = `translateX(${(1 - k) * 40}px)`; });
+  // Every pair gets its own wire, then the tangle fades as the hub appears.
+  const fade = 1 - ease.inOut(ramp(t, 5.0, 5.8));
+  mesh.forEach((w) => {
+    const k = ease.out(ramp(t, 1.0 + w.k * 0.045, 1.7 + w.k * 0.045));
+    w.p.style.strokeDashoffset = (w.len * (1 - k)).toFixed(1);
+    w.p.style.opacity = (0.62 * fade).toFixed(3);
+  });
+  const hub = document.getElementById("hub"), hk = ease.back(ramp(t, 5.4, 6.1));
+  hub.style.opacity = ramp(t, 5.4, 5.8).toFixed(3);
+  hub.style.transform = `scale(${lerp(0.6, 1, hk)})`;
+  star.forEach((w) => {
+    const k = ease.out(ramp(t, 5.9 + w.k * 0.05, 6.5 + w.k * 0.05));
+    w.p.style.strokeDashoffset = (w.len * (1 - k)).toFixed(1);
+    w.p.style.opacity = "0.95";
+  });
+};
+</script>
+<script src="common.js"></script>
+</body></html>
